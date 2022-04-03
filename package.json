@@ -4,15 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gatsby develop",
+    "build": "gatsby build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "eslint": "^7.32.0",
+    "autoprefixer": "^10.4.4",
     "gatsby": "^4.11.1",
-    "prettier": "^2.6.2",
+    "gatsby-plugin-postcss": "^5.11.0",
+    "postcss": "^8.4.12",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "tailwindcss": "^3.0.23"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "prettier": "^2.6.2",
+    "prettier-plugin-tailwindcss": "^0.1.8"
   }
 }
