@@ -25,7 +25,7 @@ const Index = () => (
                         <TagLink tagName="Testing" count="1"></TagLink>
                     </ul>
                 </div>
-                <div className="mt-16 pr-8">
+                <div className="mt-16">
                     <h2 className="my-6 text-base uppercase tracking-wide text-orange-800 dark:text-orange-400">
                         Recent Posts
                     </h2>
