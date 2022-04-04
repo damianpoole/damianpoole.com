@@ -1,5 +1,7 @@
 import React from 'react'
 
 export default ({ name }) => (
-    <span className="rounded border p-1 text-sm dark:text-sky-400">{name}</span>
+    <span className="rounded bg-slate-200 p-1 text-sm dark:bg-slate-600 ">
+        {name}
+    </span>
 )
