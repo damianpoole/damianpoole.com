@@ -11,7 +11,7 @@ export default ({ darkMode, setDarkMode }) => (
         >
             {darkMode && (
                 <svg
-                    className="w-8 text-white group-hover:text-yellow-200"
+                    className="w-6 text-white group-hover:text-yellow-200 sm:w-8"
                     viewBox="0 0 455 455"
                     fill="currentColor"
                 >
@@ -35,7 +35,7 @@ export default ({ darkMode, setDarkMode }) => (
             {!darkMode && (
                 <svg
                     viewBox="0 0 512.004 512.004"
-                    className="w-10 group-hover:text-orange-800"
+                    className="w-8 group-hover:text-orange-800 sm:w-10"
                     fill="currentColor"
                 >
                     <g>

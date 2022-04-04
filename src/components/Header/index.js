@@ -18,10 +18,10 @@ export default () => {
                 <div className="flex flex-1 md:mt-0 md:items-center md:justify-center">
                     <Nav></Nav>
                 </div>
-                <div className="absolute top-4 right-24 md:static md:right-4 lg:right-auto lg:top-auto">
+                <div className="absolute right-20 top-0 flex h-40 items-center justify-center md:static">
                     <Monkey></Monkey>
                 </div>
-                <div className="absolute top-16 right-4 md:static md:right-auto md:top-auto md:w-52">
+                <div className="absolute right-0 top-0 h-32 w-28 md:static">
                     <ThemeToggle
                         darkMode={darkMode}
                         setDarkMode={setDarkMode}
