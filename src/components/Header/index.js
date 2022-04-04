@@ -9,17 +9,19 @@ export default () => {
 
     return (
         <div className="container mx-auto h-40">
-            <div className="flex h-32">
+            <div className="block h-auto pl-4 md:flex md:h-32 md:pl-0">
                 <div className="flex h-full items-center">
-                    <h1 className="relative z-20 mx-4 font-sans text-3xl font-medium tracking-widest dark:text-sky-400">
+                    <h1 className="relative z-20 mt-12 font-sans text-3xl font-medium tracking-widest dark:text-sky-400 md:mx-4 md:mt-0">
                         Damian Poole
                     </h1>
                 </div>
-                <div className="flex flex-1 items-center justify-center">
+                <div className="flex flex-1 md:mt-0 md:items-center md:justify-center">
                     <Nav></Nav>
                 </div>
-                <Monkey></Monkey>
-                <div className="w-52">
+                <div className="absolute top-4 right-24 md:static md:right-4 lg:right-auto lg:top-auto">
+                    <Monkey></Monkey>
+                </div>
+                <div className="absolute top-16 right-4 md:static md:right-auto md:top-auto md:w-52">
                     <ThemeToggle
                         darkMode={darkMode}
                         setDarkMode={setDarkMode}

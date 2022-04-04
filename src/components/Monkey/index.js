@@ -5,7 +5,7 @@ export default () => (
         x="0px"
         y="0px"
         viewBox="0 0 580.865 580.865"
-        className="h-40 text-gray-200 dark:text-slate-600"
+        className="h-32 text-gray-200 dark:text-slate-600 md:h-40"
         fill="currentColor"
     >
         <g>
