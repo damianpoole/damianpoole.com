@@ -5,3 +5,9 @@
 body {
     @apply bg-gray-100 text-gray-800 dark:bg-slate-800 dark:text-white;
 }
+
+.markdown {
+    > * {
+        @apply mt-6 text-lg;
+    }
+}
