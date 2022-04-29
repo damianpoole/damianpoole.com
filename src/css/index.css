@@ -8,6 +8,10 @@ body {
 
 .markdown {
     > * {
-        @apply mt-6 text-lg;
+        @apply mt-6 text-lg col-span-10 col-start-2;
     }
+}
+
+.markdown pre {
+    @apply col-span-full p-4 rounded-lg bg-slate-200 dark:bg-slate-700 ;
 }

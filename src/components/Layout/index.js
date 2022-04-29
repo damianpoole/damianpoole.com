@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Header'
+import Footer from '../Footer'
 
 export default ({ children }) => (
     <>
@@ -7,5 +8,6 @@ export default ({ children }) => (
             <Header></Header>
         </div>
         {children}
+        <Footer></Footer>
     </>
 )

@@ -3,7 +3,7 @@ import Tag from '../Tag'
 
 export default ({ title, body, tags = [], img }) => (
     <a href="#" className="group hover:cursor-pointer">
-        <div className="relative grid h-full grid-cols-12 rounded-lg rounded-t-lg bg-slate-200 pb-4 outline group-hover:outline-2  group-hover:outline-sky-400 dark:bg-slate-700 dark:outline-slate-700">
+        <div className="relative grid h-full grid-cols-12 rounded-lg rounded-t-lg bg-slate-200 pb-4 outline outline-slate-200 group-hover:outline-2  group-hover:outline-sky-400 dark:bg-slate-700 dark:outline-slate-700">
             <div className="col-span-full">
                 <img
                     className=" h-56 w-full rounded-t-lg object-fill"
