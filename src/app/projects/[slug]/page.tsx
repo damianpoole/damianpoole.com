@@ -1,13 +1,13 @@
 import { getAllProjects, getProjectById } from '@/lib/projectsApi'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
 interface ProjectDetailPageProps {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 export async function generateStaticParams() {
@@ -17,11 +17,11 @@ export async function generateStaticParams() {
     }))
 }
 
-export async function generateMetadata(
-    { params }: ProjectDetailPageProps,
-    parent: ResolvingMetadata
-): Promise<Metadata> {
-    const project = getProjectById(params.slug)
+export async function generateMetadata({
+    params,
+}: ProjectDetailPageProps): Promise<Metadata> {
+    const { slug } = await params
+    const project = getProjectById(slug)
 
     if (!project) {
         return {
@@ -40,8 +40,11 @@ export async function generateMetadata(
     }
 }
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-    const project = getProjectById(params.slug)
+export default async function ProjectDetailPage({
+    params,
+}: ProjectDetailPageProps) {
+    const { slug } = await params
+    const project = getProjectById(slug)
 
     if (!project) {
         notFound()

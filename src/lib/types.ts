@@ -1,3 +1,5 @@
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote'
+
 export interface Project {
   id: string;
   title: string;
@@ -21,5 +23,5 @@ export interface BlogPost {
   coverImage?: string; // Path to image, e.g., /images/blog/my-post.jpg
   content: string; // The Markdown content itself
   readingTime?: string; // e.g., "5 min read"
-  mdxSource?: any; // Holds the compiled MDX source from next-mdx-remote
+  mdxSource?: MDXRemoteSerializeResult; // Holds the compiled MDX source from next-mdx-remote
 } 

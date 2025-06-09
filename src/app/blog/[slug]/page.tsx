@@ -3,10 +3,9 @@ import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/markdownParser'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-interface BlogPostPageProps {
-    params: {
-        slug: string
-    }
+interface Props {
+    params: Promise<{ slug: string }>
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 // Helper to format date, can be moved to a utils file later
@@ -23,10 +22,9 @@ export async function generateStaticParams() {
     return posts.map((post) => ({ slug: post.slug }))
 }
 
-export async function generateMetadata({
-    params,
-}: BlogPostPageProps): Promise<Metadata> {
-    const post = await getBlogPostBySlug(params.slug)
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params
+    const post = await getBlogPostBySlug(slug)
 
     if (!post) {
         return {
@@ -57,11 +55,12 @@ export async function generateMetadata({
     }
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    const post = await getBlogPostBySlug(params.slug)
+export default async function BlogPostPage({ params }: Props) {
+    const { slug } = await params
+    const post = await getBlogPostBySlug(slug)
 
-    if (!post || !post.mdxSource) {
-        notFound() // Triggers 404 page if post or mdxSource is missing
+    if (!post || !post.content) {
+        notFound() // Triggers 404 page if post or content is missing
     }
 
     return (
@@ -96,8 +95,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     )}
                 </header>
 
-                {/* Render MDX content */}
-                <MDXRemote {...post.mdxSource} />
+                {/* Render MDX content using RSC approach */}
+                <MDXRemote source={post.content} />
             </article>
         </div>
     )
