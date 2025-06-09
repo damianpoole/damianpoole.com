@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "highlight.js/styles/atom-one-dark.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 
+  Define HSL color values in :root for light mode.
+  These are consumed by the @theme block below.
+*/
+:root {
+  /* Base */
+  --background-hsl: 0 0% 100%; /* White */
+  --foreground-hsl: 240 10% 3.9%; /* Near Black */
+
+  /* Semantic */
+  --primary-hsl: 210 40% 50%;
+  --primary-foreground-hsl: 210 40% 98%;
+  --secondary-hsl: 240 4.8% 95.9%;
+  --secondary-foreground-hsl: 240 5.9% 10%;
+  --accent-hsl: 45 90% 55%;
+  --accent-foreground-hsl: 24 9.8% 10%;
+  --muted-hsl: 240 4.8% 95.9%;
+  --muted-foreground-hsl: 240 3.8% 46.1%;
+  --destructive-hsl: 0 84.2% 60.2%;
+  --destructive-foreground-hsl: 0 0% 98%;
+
+  /* Component-specific */
+  --border-hsl: 240 5.9% 90%;
+  --input-hsl: 240 5.9% 90%;
+  --ring-hsl: 210 40% 50%;
+  --card-hsl: 0 0% 100%;
+  --card-foreground-hsl: 240 10% 3.9%;
+
+  /* Radius */
+  --radius: 0.5rem;
+}
+
+/* 
+  Define HSL color values in .dark:root for dark mode.
+*/
+.dark:root {
+  /* Base */
+  --background-hsl: 224 71% 4%; /* Near Black from Vercel */
+  --foreground-hsl: 213 31% 91%; /* Near White from Vercel */
+
+  /* Semantic */
+  --primary-hsl: 210 40% 50%; /* Remains the same blue */
+  --primary-foreground-hsl: 210 40% 98%;
+  --secondary-hsl: 224 71% 4%; /* Dark background for secondary elements */
+  --secondary-foreground-hsl: 213 31% 91%;
+  --accent-hsl: 45 90% 55%; /* Remains the same gold */
+  --accent-foreground-hsl: 24 9.8% 10%;
+  --muted-hsl: 215 28% 17%;
+  --muted-foreground-hsl: 215 20% 65%;
+  --destructive-hsl: 0 63% 31%;
+  --destructive-foreground-hsl: 0 0% 98%;
+
+  /* Component-specific */
+  --border-hsl: 215 28% 17%;
+  --input-hsl: 215 28% 17%;
+  --ring-hsl: 210 40% 50%;
+  --card-hsl: 224 71% 4%;
+  --card-foreground-hsl: 213 31% 91%;
+}
+
+@theme {
+  /* Consume HSL variables to create Tailwind color utilities */
+  --color-background: hsl(var(--background-hsl));
+  --color-foreground: hsl(var(--foreground-hsl));
+
+  --color-primary: hsl(var(--primary-hsl));
+  --color-primary-foreground: hsl(var(--primary-foreground-hsl));
+  --color-secondary: hsl(var(--secondary-hsl));
+  --color-secondary-foreground: hsl(var(--secondary-foreground-hsl));
+  --color-accent: hsl(var(--accent-hsl));
+  --color-accent-foreground: hsl(var(--accent-foreground-hsl));
+  --color-muted: hsl(var(--muted-hsl));
+  --color-muted-foreground: hsl(var(--muted-foreground-hsl));
+  --color-destructive: hsl(var(--destructive-hsl));
+  --color-destructive-foreground: hsl(var(--destructive-foreground-hsl));
+
+  --color-border: hsl(var(--border-hsl));
+  --color-input: hsl(var(--input-hsl));
+  --color-ring: hsl(var(--ring-hsl));
+
+  --color-card: hsl(var(--card-hsl));
+  --color-card-foreground: hsl(var(--card-foreground-hsl));
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /* Typography Prose Customizations */
+  --tw-prose-body: hsl(var(--foreground-hsl));
+  --tw-prose-headings: hsl(var(--foreground-hsl));
+  --tw-prose-lead: hsl(var(--muted-foreground-hsl));
+  --tw-prose-links: hsl(var(--primary-hsl));
+  --tw-prose-bold: hsl(var(--foreground-hsl));
+  --tw-prose-counters: hsl(var(--muted-foreground-hsl));
+  --tw-prose-bullets: hsl(var(--muted-foreground-hsl));
+  --tw-prose-hr: hsl(var(--border-hsl));
+  --tw-prose-quotes: hsl(var(--foreground-hsl));
+  --tw-prose-quote-borders: hsl(var(--border-hsl));
+  --tw-prose-captions: hsl(var(--muted-foreground-hsl));
+  --tw-prose-code: hsl(var(--primary-hsl));
+  --tw-prose-pre-code: #1f2937; /* Choose a specific color for code blocks */
+  --tw-prose-pre-bg: #d1d5db; /* Choose a specific color for code blocks bg */
+  --tw-prose-th-borders: hsl(var(--border-hsl));
+  --tw-prose-td-borders: hsl(var(--border-hsl));
+
+  /* Invert styles are automatically handled by Tailwind Typography's dark modifier,
+     which respects the variables defined in .dark:root.
+     So no need for --tw-prose-invert-* variables. */
+}
+
+body {
+  font-family: var(--font-geist-sans), sans-serif; /* Use Geist Sans */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  /* Add transition for smoother color changes on theme toggle */
+  transition-property: background-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Additional global styles can go here */

@@ -1,0 +1,29 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Rule: The technology choices for this repo
+
+## Goal
+
+To guide the AI assistant with technology it uses to solve the task at hand.
+
+## Technologies
+
+We use the following technologies in this repo:
+
+- React
+- NextJS @ 15
+- Tailwindcss @ 4
+- Markdown
+
+## Ongoing
+
+Other useful technologies will be added to this list as we feel they add value, please feel free to suggest new options that may solve the task at hand in a more simple, cleaner way.

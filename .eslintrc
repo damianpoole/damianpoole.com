@@ -1,6 +1,0 @@
-{
-    "plugins": ["prettier"],
-    "parserOptions": {
-        "ecmaVersion": 2022
-    }
-}
