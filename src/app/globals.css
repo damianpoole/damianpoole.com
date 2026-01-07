@@ -40,28 +40,28 @@
   Define HSL color values in .dark:root for dark mode.
 */
 .dark:root {
-  /* Base */
-  --background-hsl: 224 71% 4%; /* Near Black from Vercel */
-  --foreground-hsl: 213 31% 91%; /* Near White from Vercel */
+  /* Catppuccin Frappé Theme */
+  --background-hsl: 228 19% 17%; /* Crust #232634 */
+  --foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
 
   /* Semantic */
-  --primary-hsl: 210 40% 50%; /* Remains the same blue */
-  --primary-foreground-hsl: 210 40% 98%;
-  --secondary-hsl: 224 71% 4%; /* Dark background for secondary elements */
-  --secondary-foreground-hsl: 213 31% 91%;
-  --accent-hsl: 45 90% 55%; /* Remains the same gold */
-  --accent-foreground-hsl: 24 9.8% 10%;
-  --muted-hsl: 215 28% 17%;
-  --muted-foreground-hsl: 215 20% 65%;
-  --destructive-hsl: 0 63% 31%;
-  --destructive-foreground-hsl: 0 0% 98%;
+  --primary-hsl: 222 74% 74%; /* Blue #8caaee */
+  --primary-foreground-hsl: 229 19% 23%; /* Base #303446 */
+  --secondary-hsl: 229 15% 30%; /* Surface0 #414559 */
+  --secondary-foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
+  --accent-hsl: 276 59% 76%; /* Mauve #ca9ee6 */
+  --accent-foreground-hsl: 229 19% 23%; /* Base #303446 */
+  --muted-hsl: 229 13% 52%; /* Overlay0 #737994 */
+  --muted-foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
+  --destructive-hsl: 359 68% 71%; /* Red #e78284 */
+  --destructive-foreground-hsl: 229 19% 23%; /* Base #303446 */
 
   /* Component-specific */
-  --border-hsl: 215 28% 17%;
-  --input-hsl: 215 28% 17%;
-  --ring-hsl: 210 40% 50%;
-  --card-hsl: 224 71% 4%;
-  --card-foreground-hsl: 213 31% 91%;
+  --border-hsl: 228 15% 37%; /* Surface1 #51576d */
+  --input-hsl: 228 15% 37%; /* Surface1 #51576d */
+  --ring-hsl: 222 74% 74%; /* Blue #8caaee */
+  --card-hsl: 229 19% 23%; /* Base #303446 */
+  --card-foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
 }
 
 @theme {
