@@ -10,26 +10,30 @@ const Terminal = () => {
 
     // Terminal content to be typed out
     const outputText = `
-# Summary
-**Damian Poole** is a Software Engineer based in the UK.
+# Damian Poole
+**Full Stack Engineer / DevOps / Allotment Novice**
 
-# Skills
-- **Languages:** TypeScript, JavaScript, Python, C#
-- **Frontend:** React, Next.js, Tailwind CSS
-- **Backend:** Node.js, Express, .NET
-- **Tools:** Git, Docker, AWS
+Damian is a UK-based software engineer who has been building for the web since the **IE6 era**. He has survived the "Browser Wars," the rise and fall of jQuery, and more "revolutionary" JavaScript frameworks than he cares to admit. With 20 years in the game, he’s seen it all—and usually has the scars to prove it.
 
-# About
-Damian is passionate about building **accessible**, **performant** web applications. 
-He enjoys solving complex problems and learning new technologies. 
-When not coding, he's likely exploring the outdoors or tinkering with new tech.
+### The System Log
+* **The Day Job:** Currently navigating the complexities of **Full Stack and DevOps** at [AND Digital](https://www.and.digital/). He spends his time orchestrating **Azure/AWS** infrastructure with **Terraform**, wrestling with **GitHub Actions**, and writing **TypeScript/React** that (mostly) works on the first try.
+* **The Philosophy:** A **Stoic Pragmatist**. He believes a simple solution that ships is infinitely superior to a "perfect" one that lives forever in a Jira backlog. 
+* **The Hot Take:** He maintains that modern Agile is largely a collection of expensive meetings that slows down real progress.
+### Known Vulnerabilities & Interests
+* **Neovim Obsession:** Spends an irrational amount of time "optimizing" a text editor that was already perfect in the 90s. He’s recently moved his entire life into **obsidian.nvim** because Notion felt too "user-friendly."
+* **Side Projects:** Currently building an indie game in **PhaserJS**. It’s a humbling reminder that moving a sprite across a screen is sometimes more complex than managing a microservice.
+* **The Great Outdoors:** When he isn't staring at a terminal, he's likely hiking in **Northumberland**, snowboarding, or losing a battle against weeds at his **allotment**.
 
-# Contact
-- [github.com/damianpoole](https://github.com/damianpoole)
-- [linkedin.com/in/damianpoole](https://linkedin.com/in/damianpoole)
-- Email: damian.poole@gmail.com
+### Technical Metadata
+* **Modern:** React, Next.js, Svelte, Vitest, Azure, AWS, K8s, AI Tooling.
+* **Vintage:** C#, .NET, MongoDB, Jenkins, and the dark art of CSS hacks for Internet Explorer.
 
-> Ready for new challenges.
+### Contact
+* [github.com/damianpoole](https://github.com/damianpoole)
+* [linkedin.com/in/damianpoole](https://linkedin.com/in/damianpoole)
+* Email: damian.poole@gmail.com
+
+> The goal is to solve the problem, not to win an argument about the solution.
 `
 
     // Typing hooks
@@ -37,7 +41,7 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
         useTypewriter(commandText, 50, 500)
     const { displayText: typedOutput } = useTypewriter(
         step === 2 ? outputText : '',
-        10,
+        5,
         0
     )
 
@@ -58,12 +62,12 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
     return (
         <div className="w-full font-mono text-lg text-[#c6d0f5] md:text-xl">
             {/* Terminal Body */}
-            <div className="mx-auto w-full max-w-screen-lg p-4 md:p-8">
+            <div className="w-full max-w-screen-lg p-4 md:p-8">
                 {/* Prompt Line */}
                 <div className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1">
                     <span className="font-bold text-[#8caaee]">~</span>
                     <span className="text-[#a5adce]">/</span>
-                    <span className="font-bold text-[#ca9ee6]">
+                    <span className="font-bold text-[#81c8be]">
                         damianpoole.com
                     </span>
                     <span className="text-[#a5adce]">on</span>
@@ -71,7 +75,7 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
                     {/* Git Branch Segment */}
                     <div className="flex items-center gap-1">
                         <svg
-                            className="h-5 w-5 text-[#f4b8e4]"
+                            className="h-5 w-5 text-[#8caaee]"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -84,7 +88,7 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
                             <circle cx="6" cy="18" r="3"></circle>
                             <path d="M18 9a9 9 0 0 1-9 9"></path>
                         </svg>
-                        <span className="font-bold text-[#f4b8e4]">main</span>
+                        <span className="font-bold text-[#8caaee]">main</span>
                     </div>
 
                     <span className="text-[#a5adce]">via</span>
@@ -128,8 +132,8 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
                         ) : (
                             <>
                                 <style>{`
-                                    .terminal-output h1 {
-                                        background-color: #ef9f76;
+                                    .terminal-output h1, .terminal-output h2, .terminal-output h3 {
+                                        background-color: #f4b8e4;
                                         color: #303446;
                                         font-size: 0.75rem;
                                         padding: 0.25rem 0.5rem;
@@ -140,7 +144,7 @@ When not coding, he's likely exploring the outdoors or tinkering with new tech.
                                         line-height: 1;
                                     }
                                     .terminal-output strong {
-                                        color: #8caaee;
+                                        color: #f2d5cf;
                                     }
                                     .terminal-output a {
                                         color: #8caaee;
