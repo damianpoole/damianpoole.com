@@ -5,43 +5,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* 
-  Define HSL color values in :root for light mode.
-  These are consumed by the @theme block below.
+  Define HSL color values in :root for the permanent dark terminal aesthetic.
 */
 :root {
-  /* Base */
-  --background-hsl: 0 0% 100%; /* White */
-  --foreground-hsl: 240 10% 3.9%; /* Near Black */
-
-  /* Semantic */
-  --primary-hsl: 210 40% 50%;
-  --primary-foreground-hsl: 210 40% 98%;
-  --secondary-hsl: 240 4.8% 95.9%;
-  --secondary-foreground-hsl: 240 5.9% 10%;
-  --accent-hsl: 45 90% 55%;
-  --accent-foreground-hsl: 24 9.8% 10%;
-  --muted-hsl: 240 4.8% 95.9%;
-  --muted-foreground-hsl: 240 3.8% 46.1%;
-  --destructive-hsl: 0 84.2% 60.2%;
-  --destructive-foreground-hsl: 0 0% 98%;
-
-  /* Component-specific */
-  --border-hsl: 240 5.9% 90%;
-  --input-hsl: 240 5.9% 90%;
-  --ring-hsl: 210 40% 50%;
-  --card-hsl: 0 0% 100%;
-  --card-foreground-hsl: 240 10% 3.9%;
-
-  /* Radius */
-  --radius: 0.5rem;
-}
-
-/* 
-  Define HSL color values in .dark:root for dark mode.
-*/
-.dark:root {
-  /* Catppuccin Frappé Theme */
-  --background-hsl: 228 19% 17%; /* Crust #232634 */
+  /* Catppuccin Frappé Theme (Permanent) */
+  --background-hsl: 232 19% 17%; /* Crust #232634 */
   --foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
 
   /* Semantic */
@@ -62,7 +30,39 @@
   --ring-hsl: 222 74% 74%; /* Blue #8caaee */
   --card-hsl: 229 19% 23%; /* Base #303446 */
   --card-foreground-hsl: 227 70% 87%; /* Text #c6d0f5 */
+
+  /* Catppuccin Palette Extras */
+  --cat-rosewater: 10 56% 91%;
+  --cat-flamingo: 0 59% 88%;
+  --cat-pink: 316 72% 82%;
+  --cat-mauve: 276 59% 76%;
+  --cat-red: 359 68% 71%;
+  --cat-maroon: 355 41% 66%;
+  --cat-peach: 26 84% 75%;
+  --cat-yellow: 48 77% 76%;
+  --cat-green: 95 44% 68%;
+  --cat-teal: 172 35% 64%;
+  --cat-sky: 189 48% 75%;
+  --cat-sapphire: 200 50% 70%;
+  --cat-blue: 222 74% 74%;
+  --cat-lavender: 232 76% 83%;
+  --cat-text: 227 70% 87%;
+  --cat-subtext1: 227 35% 75%;
+  --cat-subtext0: 228 25% 72%;
+  --cat-overlay2: 228 17% 62%;
+  --cat-overlay1: 229 14% 53%;
+  --cat-overlay0: 229 13% 52%;
+  --cat-surface2: 229 14% 43%;
+  --cat-surface1: 228 15% 37%;
+  --cat-surface0: 229 15% 30%;
+  --cat-base: 229 19% 23%;
+  --cat-mantle: 230 18% 20%;
+  --cat-crust: 232 19% 17%;
+
+  /* Radius */
+  --radius: 0.5rem;
 }
+
 
 @theme {
   /* Consume HSL variables to create Tailwind color utilities */
@@ -87,6 +87,34 @@
   --color-card: hsl(var(--card-hsl));
   --color-card-foreground: hsl(var(--card-foreground-hsl));
 
+  /* Catppuccin Utility Colors */
+  --color-cat-rosewater: hsl(var(--cat-rosewater));
+  --color-cat-flamingo: hsl(var(--cat-flamingo));
+  --color-cat-pink: hsl(var(--cat-pink));
+  --color-cat-mauve: hsl(var(--cat-mauve));
+  --color-cat-red: hsl(var(--cat-red));
+  --color-cat-maroon: hsl(var(--cat-maroon));
+  --color-cat-peach: hsl(var(--cat-peach));
+  --color-cat-yellow: hsl(var(--cat-yellow));
+  --color-cat-green: hsl(var(--cat-green));
+  --color-cat-teal: hsl(var(--cat-teal));
+  --color-cat-sky: hsl(var(--cat-sky));
+  --color-cat-sapphire: hsl(var(--cat-sapphire));
+  --color-cat-blue: hsl(var(--cat-blue));
+  --color-cat-lavender: hsl(var(--cat-lavender));
+  --color-cat-text: hsl(var(--cat-text));
+  --color-cat-subtext1: hsl(var(--cat-subtext1));
+  --color-cat-subtext0: hsl(var(--cat-subtext0));
+  --color-cat-overlay2: hsl(var(--cat-overlay2));
+  --color-cat-overlay1: hsl(var(--cat-overlay1));
+  --color-cat-overlay0: hsl(var(--cat-overlay0));
+  --color-cat-surface2: hsl(var(--cat-surface2));
+  --color-cat-surface1: hsl(var(--cat-surface1));
+  --color-cat-surface0: hsl(var(--cat-surface0));
+  --color-cat-base: hsl(var(--cat-base));
+  --color-cat-mantle: hsl(var(--cat-mantle));
+  --color-cat-crust: hsl(var(--cat-crust));
+
   /* Radius */
   --radius: 0.5rem;
 
@@ -95,7 +123,7 @@
   --tw-prose-headings: hsl(var(--foreground-hsl));
   --tw-prose-lead: hsl(var(--muted-foreground-hsl));
   --tw-prose-links: hsl(var(--primary-hsl));
-  --tw-prose-bold: hsl(var(--foreground-hsl));
+  --tw-prose-bold: hsl(var(--cat-rosewater));
   --tw-prose-counters: hsl(var(--muted-foreground-hsl));
   --tw-prose-bullets: hsl(var(--muted-foreground-hsl));
   --tw-prose-hr: hsl(var(--border-hsl));
@@ -107,10 +135,6 @@
   --tw-prose-pre-bg: #d1d5db; /* Choose a specific color for code blocks bg */
   --tw-prose-th-borders: hsl(var(--border-hsl));
   --tw-prose-td-borders: hsl(var(--border-hsl));
-
-  /* Invert styles are automatically handled by Tailwind Typography's dark modifier,
-     which respects the variables defined in .dark:root.
-     So no need for --tw-prose-invert-* variables. */
 }
 
 body {
@@ -123,4 +147,46 @@ body {
   transition-duration: 150ms;
 }
 
-/* Additional global styles can go here */
+/* Terminal Styling */
+.terminal-output h1, 
+.terminal-output h2, 
+.terminal-output h3 {
+  background-color: var(--color-cat-pink);
+  color: var(--color-cat-base);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  width: fit-content;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-top: 1.5rem;
+}
+
+.terminal-output a {
+  color: var(--color-cat-blue);
+  text-decoration: none;
+}
+
+.terminal-output a:hover {
+  text-decoration: underline;
+}
+
+.terminal-output p, 
+.terminal-output li {
+  color: var(--color-cat-text);
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.terminal-output ul, 
+.terminal-output ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.terminal-output li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
