@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
@@ -25,6 +26,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="h-full" suppressHydrationWarning>
+            <head>
+                <Script
+                    defer
+                    src="https://static.cloudflareinsights.com/beacon.min.js"
+                    data-cf-beacon='{"token": "20d7272e1270452db62621b078a9bf55"}'
+                    strategy="afterInteractive"
+                />
+            </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col bg-white antialiased dark:bg-background`}
             >
