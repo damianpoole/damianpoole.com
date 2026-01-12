@@ -40,7 +40,6 @@
 ## Tasks
 
 - [x] 1.0 **Project Setup and Core Platform Configuration**
-
     - [x] 1.1 Initialize Next.js (v15) project if not already done (current repo is Gatsby).
     - [x] 1.2 Install and configure Tailwind CSS (v4) with PostCSS use Context7.
     - [x] 1.3 Set up basic project structure (folders for components, lib, content, app routes).
@@ -49,7 +48,6 @@
     - [x] 1.6 Create initial `next.config.mjs`.
 
 - [x] 2.0 **Basic Site Structure, Layout, and Navigation**
-
     - [x] 2.1 Create main `src/app/layout.tsx` with basic HTML structure (html, head, body).
     - [x] 2.2 Implement a responsive `Header` component (`src/components/Header.tsx`) with navigation links (e.g., Home, About, Projects, Blog).
     - [x] 2.3 Implement a `Footer` component (`src/components/Footer.tsx`) with copyright and potentially social links.
@@ -59,7 +57,6 @@
     - [x] 2.7 Implement light/dark mode toggle functionality.
 
 - [x] 3.0 **Implement MVP Content Sections (About Me, Project Portfolio, Blog)**
-
     - [x] 3.1 **About Me Page (`src/app/about/page.tsx`)**
         - [x] 3.1.1 Design and implement layout for the About Me page based on PRD and inspirations.
         - [x] 3.1.2 Allow content to be easily updatable (e.g., from Markdown or directly in component for MVP).
@@ -81,7 +78,6 @@
         - [ ] 3.3.7 (Optional for MVP) Implement filtering/sorting by tags/categories.
 
 - [x] 4.0 **Styling, UI Implementation, and Responsiveness**
-
     - [x] 4.1 Apply global styles and Tailwind CSS base configuration, drawing inspiration from `ryancarson.com` and `joshwcomeau.com`.
     - [x] 4.2 Style the Header, Footer, and navigation elements.
     - [x] 4.3 Style the Homepage, About Me page, Project Portfolio (list & detail), and Blog (list & detail) pages.

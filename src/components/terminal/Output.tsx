@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface OutputProps {
     html: string
     isProcessing: boolean

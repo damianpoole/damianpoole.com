@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { marked } from 'marked'
 import { terminalContent } from '@/data/terminalContent'
@@ -24,13 +24,16 @@ const Terminal = () => {
 
     useEffect(() => {
         if (commandComplete && step === 0) {
-            setStep(1)
-            setTimeout(() => setStep(2), 800) // Simulate processing delay
+            const timeoutId = setTimeout(() => {
+                setStep(1)
+                setTimeout(() => setStep(2), 800) // Simulate processing delay
+            }, 0)
+            return () => clearTimeout(timeoutId)
         }
     }, [commandComplete, step])
 
     return (
-        <div className="w-full font-mono text-lg text-cat-text md:text-xl">
+        <div className="text-cat-text w-full font-mono text-lg md:text-xl">
             {/* Terminal Body */}
             <div className="w-full max-w-screen-lg p-4 md:p-8">
                 {/* Prompt Line */}
@@ -53,4 +56,3 @@ const Terminal = () => {
 }
 
 export default Terminal
-
