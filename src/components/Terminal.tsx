@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect, useMemo } from 'react'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { safeRenderMarkdown } from '@/utils/sanitizeHtml'
