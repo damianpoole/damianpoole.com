@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { useTypewriter } from '@/hooks/useTypewriter'
-import { marked } from 'marked'
+import { safeRenderMarkdown } from '@/utils/sanitizeHtml'
 import { terminalContent } from '@/data/terminalContent'
 import { Prompt } from './terminal/Prompt'
 import { Command } from './terminal/Command'
@@ -19,7 +19,7 @@ const Terminal = () => {
 
     // Parse markdown safely
     const htmlOutput = useMemo(() => {
-        return marked.parse(typedOutput) as string
+        return safeRenderMarkdown(typedOutput)
     }, [typedOutput])
 
     useEffect(() => {
