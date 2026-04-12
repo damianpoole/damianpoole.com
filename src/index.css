@@ -2,7 +2,6 @@
 @plugin "@tailwindcss/typography";
 @import 'highlight.js/styles/atom-one-dark.css';
 
-@custom-variant dark (&:where(.dark, .dark *));
 
 /* 
   Define HSL color values in :root for the permanent dark terminal aesthetic.
@@ -144,10 +143,6 @@ body {
     font-family: var(--font-geist-sans), sans-serif; /* Use Geist Sans */
     background-color: var(--color-background);
     color: var(--color-foreground);
-    /* Add transition for smoother color changes on theme toggle */
-    transition-property: background-color, color;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
 }
 
 /* Terminal Styling */

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export const useTypewriter = (
     text: string,
@@ -8,8 +8,10 @@ export const useTypewriter = (
     const [displayText, setDisplayText] = useState('')
     const [isTyping, setIsTyping] = useState(false)
     const [isComplete, setIsComplete] = useState(false)
+    const cancelledRef = useRef(false)
 
     useEffect(() => {
+        cancelledRef.current = false
         let timeoutId: ReturnType<typeof setTimeout>
 
         const startTyping = () => {
@@ -17,6 +19,7 @@ export const useTypewriter = (
             let currentIndex = 0
 
             const typeChar = () => {
+                if (cancelledRef.current) return
                 if (currentIndex < text.length) {
                     setDisplayText(text.slice(0, currentIndex + 1))
                     currentIndex++
@@ -31,12 +34,17 @@ export const useTypewriter = (
         }
 
         if (startDelay > 0) {
-            timeoutId = setTimeout(startTyping, startDelay)
+            timeoutId = setTimeout(() => {
+                if (!cancelledRef.current) startTyping()
+            }, startDelay)
         } else {
             startTyping()
         }
 
-        return () => clearTimeout(timeoutId)
+        return () => {
+            cancelledRef.current = true
+            clearTimeout(timeoutId)
+        }
     }, [text, speed, startDelay])
 
     return { displayText, isTyping, isComplete }
