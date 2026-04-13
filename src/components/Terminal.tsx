@@ -22,13 +22,16 @@ const Terminal = () => {
 
     useEffect(() => {
         if (commandComplete && step === 0) {
-            const timeoutId = setTimeout(() => {
-                setStep(1)
-                setTimeout(() => setStep(2), 800) // Simulate processing delay
-            }, 0)
-            return () => clearTimeout(timeoutId)
+            setStep(1)
         }
     }, [commandComplete, step])
+
+    useEffect(() => {
+        if (step === 1) {
+            const timeoutId = setTimeout(() => setStep(2), 800)
+            return () => clearTimeout(timeoutId)
+        }
+    }, [step])
 
     return (
         <div className="text-cat-text w-full font-mono text-lg md:text-xl">
