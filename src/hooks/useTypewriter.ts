@@ -6,7 +6,6 @@ export const useTypewriter = (
     startDelay: number = 0
 ) => {
     const [displayText, setDisplayText] = useState('')
-    const [isTyping, setIsTyping] = useState(false)
     const [isComplete, setIsComplete] = useState(false)
     const cancelledRef = useRef(false)
 
@@ -15,7 +14,6 @@ export const useTypewriter = (
         let timeoutId: ReturnType<typeof setTimeout>
 
         const startTyping = () => {
-            setIsTyping(true)
             let currentIndex = 0
 
             const typeChar = () => {
@@ -25,7 +23,6 @@ export const useTypewriter = (
                     currentIndex++
                     timeoutId = setTimeout(typeChar, speed)
                 } else {
-                    setIsTyping(false)
                     setIsComplete(true)
                 }
             }
@@ -47,5 +44,5 @@ export const useTypewriter = (
         }
     }, [text, speed, startDelay])
 
-    return { displayText, isTyping, isComplete }
+    return { displayText, isComplete }
 }
