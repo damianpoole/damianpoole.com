@@ -190,10 +190,10 @@ body {
 .content-terminal h1,
 .content-terminal h2,
 .content-terminal h3 {
-    background-color: var(--color-cat-pink);
-    color: var(--color-cat-base);
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
+    background-color: transparent;
+    color: var(--color-cat-text);
+    font-size: 1.25rem;
+    padding: 0.25rem 0;
     width: fit-content;
     font-weight: 800;
     text-transform: uppercase;
@@ -203,12 +203,14 @@ body {
 }
 
 .content-terminal a {
-    color: var(--color-cat-blue);
+    color: var(--color-cat-text);
     text-decoration: none;
+    border-bottom: 1px solid var(--color-cat-text);
 }
 
 .content-terminal a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .content-terminal p,
