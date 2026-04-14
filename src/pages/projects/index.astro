@@ -25,6 +25,7 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
     description={pageDescription}
     eyebrow="Work"
     canonicalUrl={canonicalUrl}
+    activeTab="projects"
 >
     <section class="flex flex-col gap-6">
         {
@@ -32,10 +33,10 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
                 const tech = project.data.tech as string[]
 
                 return (
-                    <article class="border-cat-surface1 bg-cat-base/30 rounded-xl border p-6">
+                    <article class="border-cat-surface1 border-b pb-6 last:border-b-0 last:pb-0">
                         <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                             <div class="max-w-2xl">
-                                <h2 class="mb-3 text-2xl font-semibold tracking-tight">
+                                <h2 class="mb-3 text-xl font-semibold tracking-tight md:text-2xl">
                                     <a
                                         class="hover:text-cat-blue transition-colors"
                                         href={`/projects/${project.id}/`}

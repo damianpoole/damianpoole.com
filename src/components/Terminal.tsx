@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react'
 import { useTypewriter } from '@/hooks/useTypewriter'
 import { safeRenderMarkdown } from '@/utils/sanitizeHtml.client'
 import { terminalContent } from '@/data/terminalContent'
+import TerminalFrame from './TerminalFrame'
 import { Prompt } from './terminal/Prompt'
 import { Command } from './terminal/Command'
 import { Output } from './terminal/Output'
@@ -36,9 +37,8 @@ const Terminal = () => {
     }, [commandComplete, step])
 
     return (
-        <div className="text-cat-text w-full font-mono text-lg md:text-xl">
-            {/* Terminal Body */}
-            <div className="w-full max-w-screen-lg p-4 md:p-8">
+        <TerminalFrame activeTab="home">
+            <div className="text-cat-text w-full font-mono text-lg md:text-xl">
                 {/* Prompt Line */}
                 <Prompt {...terminalContent.prompt} />
 
@@ -54,7 +54,7 @@ const Terminal = () => {
                     />
                 )}
             </div>
-        </div>
+        </TerminalFrame>
     )
 }
 

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import TerminalFrame from '@/components/TerminalFrame'
 
 interface Props {
     title: string
@@ -8,6 +9,7 @@ interface Props {
     eyebrow?: string
     canonicalUrl?: string
     ogType?: 'website' | 'article'
+    activeTab?: 'home' | 'blog' | 'projects'
 }
 
 const {
@@ -17,6 +19,7 @@ const {
     eyebrow,
     canonicalUrl,
     ogType,
+    activeTab = 'blog',
 } = Astro.props
 ---
 
@@ -26,40 +29,29 @@ const {
     canonicalUrl={canonicalUrl}
     ogType={ogType}
 >
-    <main
-        class="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 py-10 md:px-8 md:py-16"
-    >
-        <nav
-            class="border-cat-surface1 text-cat-subtext0 mb-8 flex items-center gap-4 border-b pb-4 text-sm"
-            aria-label="Primary"
-        >
-            <a class="hover:text-cat-blue transition-colors" href="/">Home</a>
-            <a class="hover:text-cat-blue transition-colors" href="/blog/"
-                >Blog</a
-            >
-            <a class="hover:text-cat-blue transition-colors" href="/projects/"
-                >Projects</a
-            >
-        </nav>
-        <div
-            class="border-cat-surface1 mb-10 flex flex-col gap-4 border-b pb-8"
-        >
-            {
-                eyebrow && (
-                    <p class="text-cat-blue font-mono text-sm tracking-[0.2em] uppercase">
-                        {eyebrow}
-                    </p>
-                )
-            }
-            <h1
-                class="text-foreground text-4xl font-semibold tracking-tight md:text-5xl"
-            >
-                {pageTitle}
-            </h1>
-            <p class="text-cat-subtext0 max-w-2xl text-lg leading-relaxed">
-                {description}
-            </p>
-        </div>
-        <slot />
-    </main>
+    <TerminalFrame activeTab={activeTab}>
+        <main class="text-cat-text w-full font-mono text-lg md:text-xl">
+            <div class="mb-8 flex flex-col gap-4">
+                <div
+                    class="flex flex-wrap items-center gap-x-2 gap-y-1"
+                >
+                    <span class="text-cat-blue font-bold">~</span>
+                    <span class="text-cat-subtext0">/</span>
+                    <span class="text-cat-teal font-bold">
+                        {eyebrow?.toLowerCase() ?? 'content'}
+                    </span>
+                    <span class="text-cat-subtext0">via</span>
+                    <span class="text-cat-peach font-bold">astro</span>
+                    <span class="text-cat-green font-bold">❯</span>
+                    <span class="text-cat-text">open {pageTitle}</span>
+                </div>
+                <p class="text-cat-subtext0 max-w-3xl leading-relaxed">
+                    {description}
+                </p>
+            </div>
+            <div class="content-terminal terminal-output space-y-8">
+                <slot />
+            </div>
+        </main>
+    </TerminalFrame>
 </BaseLayout>

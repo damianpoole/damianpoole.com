@@ -1,13 +1,14 @@
 import { safeRenderMarkdown } from '@/utils/sanitizeHtml.server'
 import { terminalContent } from '@/data/terminalContent'
+import TerminalFrame from './TerminalFrame'
 import { Prompt } from './terminal/Prompt'
 
 const htmlOutput = safeRenderMarkdown(terminalContent.output)
 
 const StaticTerminal = () => {
     return (
-        <div className="text-cat-text w-full font-mono text-lg md:text-xl">
-            <div className="w-full max-w-screen-lg p-4 md:p-8">
+        <TerminalFrame activeTab="home">
+            <div className="text-cat-text w-full font-mono text-lg md:text-xl">
                 <Prompt {...terminalContent.prompt} />
                 <div className="mb-6 flex items-center gap-2">
                     <span className="text-cat-blue font-bold">❯</span>
@@ -24,7 +25,7 @@ const StaticTerminal = () => {
                     />
                 </div>
             </div>
-        </div>
+        </TerminalFrame>
     )
 }
 
