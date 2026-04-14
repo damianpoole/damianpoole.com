@@ -27,7 +27,7 @@ Damian is a UK-based software engineer who has been building for the web since t
 ### Contact
 * [github.com/damianpoole](https://github.com/damianpoole)
 * [linkedin.com/in/damianpoole](https://linkedin.com/in/damianpoole)
-* Email: damian.poole@gmail.com
+* Email: damian.poole [at] gmail [dot] com
 
 > The goal is to solve the problem, not to win an argument about the solution.
 `,
