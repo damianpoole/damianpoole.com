@@ -6,9 +6,13 @@ import '../index.css'
 
 interface Props {
     title?: string
+    description?: string
 }
 
-const { title = 'Damian Poole' } = Astro.props
+const {
+    title = 'Damian Poole',
+    description = 'Personal site of Damian Poole.',
+} = Astro.props
 ---
 
 <!doctype html>
@@ -17,6 +21,7 @@ const { title = 'Damian Poole' } = Astro.props
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
+        <meta name="description" content={description} />
     </head>
     <body>
         <noscript>
