@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# astro
+/.astro/
+
 # production
 /build
 /dist
@@ -37,11 +40,20 @@ yarn-error.log*
 # vercel
 .vercel
 
+# netlify
+.netlify/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 # local configuration & tasks
 .cursor/
+.idea/
+.vscode/
 tasks/
 .maki
+
+# editor temp files
+*.swp
+*.swo
