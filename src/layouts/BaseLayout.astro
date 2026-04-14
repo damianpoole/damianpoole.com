@@ -1,6 +1,7 @@
 ---
 import '@fontsource/geist-sans'
 import '@fontsource/geist-mono'
+import StaticTerminal from '@/components/StaticTerminal'
 import '../index.css'
 
 interface Props {
@@ -18,6 +19,13 @@ const { title = 'Damian Poole' } = Astro.props
         <title>{title}</title>
     </head>
     <body>
+        <noscript>
+            <div
+                class="flex min-h-screen w-full flex-col bg-[#303446] text-[#c6d0f5]"
+            >
+                <StaticTerminal />
+            </div>
+        </noscript>
         <slot />
     </body>
 </html>

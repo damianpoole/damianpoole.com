@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useTypewriter } from '@/hooks/useTypewriter'
-import { safeRenderMarkdown } from '@/utils/sanitizeHtml'
+import { safeRenderMarkdown } from '@/utils/sanitizeHtml.client'
 import { terminalContent } from '@/data/terminalContent'
 import { Prompt } from './terminal/Prompt'
 import { Command } from './terminal/Command'
@@ -17,8 +17,12 @@ const Terminal = () => {
 
     // Parse markdown safely
     const htmlOutput = useMemo(() => {
+        if (step !== 2) {
+            return ''
+        }
+
         return safeRenderMarkdown(typedOutput)
-    }, [typedOutput])
+    }, [step, typedOutput])
 
     useEffect(() => {
         if (commandComplete && step === 0) {
