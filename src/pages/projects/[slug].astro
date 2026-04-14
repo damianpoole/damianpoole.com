@@ -1,0 +1,107 @@
+---
+import {
+    getCollection,
+    getEntry,
+    render,
+    type CollectionEntry,
+} from 'astro:content'
+import ContentLayout from '@/layouts/ContentLayout.astro'
+
+export async function getStaticPaths() {
+    const entries = await getCollection('projects')
+
+    return entries
+        .filter(
+            (entry: CollectionEntry<'projects'>) =>
+                !import.meta.env.PROD || !entry.data.draft
+        )
+        .map((entry: CollectionEntry<'projects'>) => ({
+            params: { slug: entry.id },
+        }))
+}
+
+const { slug } = Astro.params
+
+if (!slug) {
+    throw new Error('Expected project slug parameter.')
+}
+
+const project = await getEntry('projects', slug)
+
+if (!project || (import.meta.env.PROD && project.data.draft)) {
+    return Astro.redirect('/404')
+}
+
+const tech = project.data.tech as string[]
+const pageTitle = `${project.data.title} | Projects | Damian Poole`
+const canonicalUrl = `https://damianpoole.com/projects/${project.id}/`
+const { Content } = await render(project)
+---
+
+<ContentLayout
+    title={pageTitle}
+    pageTitle={project.data.title}
+    description={project.data.description}
+    eyebrow="Project"
+    canonicalUrl={canonicalUrl}
+>
+    <div class="mb-8 flex flex-col gap-6">
+        <div
+            class="text-cat-subtext0 flex flex-wrap items-center gap-3 text-sm"
+        >
+            {
+                project.data.draft && (
+                    <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
+                        Draft
+                    </span>
+                )
+            }
+            {
+                tech.map((item) => (
+                    <span class="bg-cat-surface0 text-cat-blue rounded-full px-3 py-1 font-mono">
+                        {item}
+                    </span>
+                ))
+            }
+        </div>
+
+        <div class="flex flex-wrap gap-4 text-sm">
+            {
+                project.data.githubUrl && (
+                    <a
+                        class="text-cat-blue hover:underline"
+                        href={project.data.githubUrl}
+                    >
+                        Source
+                    </a>
+                )
+            }
+            {
+                project.data.liveUrl && (
+                    <a
+                        class="text-cat-blue hover:underline"
+                        href={project.data.liveUrl}
+                    >
+                        Live Demo
+                    </a>
+                )
+            }
+        </div>
+
+        {
+            project.data.image && (
+                <div class="border-cat-surface1 overflow-hidden rounded-xl border">
+                    <img
+                        src={project.data.image}
+                        alt={`${project.data.title} screenshot`}
+                        class="h-auto w-full object-cover"
+                    />
+                </div>
+            )
+        }
+    </div>
+
+    <article class="prose prose-invert prose-lg max-w-none leading-relaxed">
+        <Content />
+    </article>
+</ContentLayout>

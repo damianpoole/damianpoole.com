@@ -13,6 +13,7 @@ const posts = (await getCollection('blog'))
 
 const pageTitle = 'Blog | Damian Poole'
 const pageDescription = 'Notes on engineering, tooling, and projects.'
+const canonicalUrl = 'https://damianpoole.com/blog/'
 
 const formatDate = (date: Date) =>
     date.toLocaleDateString('en-GB', {
@@ -24,8 +25,10 @@ const formatDate = (date: Date) =>
 
 <ContentLayout
     title={pageTitle}
+    pageTitle="Blog"
     description={pageDescription}
     eyebrow="Writing"
+    canonicalUrl={canonicalUrl}
 >
     <section class="flex flex-col gap-6">
         {

@@ -1,0 +1,104 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import ContentLayout from '@/layouts/ContentLayout.astro'
+
+const showEntry = (draft: boolean) => !import.meta.env.PROD || !draft
+
+const projects = (await getCollection('projects'))
+    .filter((entry: CollectionEntry<'projects'>) => showEntry(entry.data.draft))
+    .sort(
+        (
+            left: CollectionEntry<'projects'>,
+            right: CollectionEntry<'projects'>
+        ) => left.data.order - right.data.order
+    ) as CollectionEntry<'projects'>[]
+
+const pageTitle = 'Projects | Damian Poole'
+const pageDescription =
+    'Selected projects, experiments, and things built for the web.'
+const canonicalUrl = 'https://damianpoole.com/projects/'
+---
+
+<ContentLayout
+    title={pageTitle}
+    pageTitle="Projects"
+    description={pageDescription}
+    eyebrow="Work"
+    canonicalUrl={canonicalUrl}
+>
+    <section class="flex flex-col gap-6">
+        {
+            projects.map((project) => {
+                const tech = project.data.tech as string[]
+
+                return (
+                    <article class="border-cat-surface1 bg-cat-base/30 rounded-xl border p-6">
+                        <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                            <div class="max-w-2xl">
+                                <h2 class="mb-3 text-2xl font-semibold tracking-tight">
+                                    <a
+                                        class="hover:text-cat-blue transition-colors"
+                                        href={`/projects/${project.id}/`}
+                                    >
+                                        {project.data.title}
+                                    </a>
+                                </h2>
+                                <p class="text-cat-subtext0 leading-relaxed">
+                                    {project.data.description}
+                                </p>
+                            </div>
+                            {project.data.draft && (
+                                <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1 text-sm">
+                                    Draft
+                                </span>
+                            )}
+                        </div>
+
+                        {project.data.image && (
+                            <a
+                                href={`/projects/${project.id}/`}
+                                class="border-cat-surface1 mb-5 block overflow-hidden rounded-lg border"
+                            >
+                                <img
+                                    src={project.data.image}
+                                    alt={`${project.data.title} screenshot`}
+                                    class="h-auto w-full object-cover"
+                                    loading="lazy"
+                                />
+                            </a>
+                        )}
+
+                        <div class="flex flex-col gap-4">
+                            <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
+                                {tech.map((item) => (
+                                    <li class="bg-cat-surface0 rounded-full px-3 py-1">
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div class="flex flex-wrap gap-4 text-sm">
+                                {project.data.githubUrl && (
+                                    <a
+                                        class="text-cat-blue hover:underline"
+                                        href={project.data.githubUrl}
+                                    >
+                                        Source
+                                    </a>
+                                )}
+                                {project.data.liveUrl && (
+                                    <a
+                                        class="text-cat-blue hover:underline"
+                                        href={project.data.liveUrl}
+                                    >
+                                        Live Demo
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    </article>
+                )
+            })
+        }
+    </section>
+</ContentLayout>

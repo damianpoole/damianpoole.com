@@ -37,6 +37,7 @@ const tags = post.data.tags as string[]
 const { Content } = await render(post)
 
 const pageTitle = `${post.data.title} | Damian Poole`
+const canonicalUrl = `https://damianpoole.com/blog/${post.id}/`
 
 const formatDate = (date: Date) =>
     date.toLocaleDateString('en-GB', {
@@ -48,8 +49,11 @@ const formatDate = (date: Date) =>
 
 <ContentLayout
     title={pageTitle}
+    pageTitle={post.data.title}
     description={post.data.description}
     eyebrow="Blog"
+    canonicalUrl={canonicalUrl}
+    ogType="article"
 >
     <div
         class="text-cat-subtext0 mb-8 flex flex-wrap items-center gap-3 text-sm"

@@ -3,17 +3,44 @@ import BaseLayout from '@/layouts/BaseLayout.astro'
 
 interface Props {
     title: string
+    pageTitle?: string
     description: string
     eyebrow?: string
+    canonicalUrl?: string
+    ogType?: 'website' | 'article'
 }
 
-const { title, description, eyebrow } = Astro.props
+const {
+    title,
+    pageTitle = title,
+    description,
+    eyebrow,
+    canonicalUrl,
+    ogType,
+} = Astro.props
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+    title={title}
+    description={description}
+    canonicalUrl={canonicalUrl}
+    ogType={ogType}
+>
     <main
         class="mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 py-10 md:px-8 md:py-16"
     >
+        <nav
+            class="border-cat-surface1 text-cat-subtext0 mb-8 flex items-center gap-4 border-b pb-4 text-sm"
+            aria-label="Primary"
+        >
+            <a class="hover:text-cat-blue transition-colors" href="/">Home</a>
+            <a class="hover:text-cat-blue transition-colors" href="/blog/"
+                >Blog</a
+            >
+            <a class="hover:text-cat-blue transition-colors" href="/projects/"
+                >Projects</a
+            >
+        </nav>
         <div
             class="border-cat-surface1 mb-10 flex flex-col gap-4 border-b pb-8"
         >
@@ -27,7 +54,7 @@ const { title, description, eyebrow } = Astro.props
             <h1
                 class="text-foreground text-4xl font-semibold tracking-tight md:text-5xl"
             >
-                {title}
+                {pageTitle}
             </h1>
             <p class="text-cat-subtext0 max-w-2xl text-lg leading-relaxed">
                 {description}

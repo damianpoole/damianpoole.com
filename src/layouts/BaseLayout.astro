@@ -7,11 +7,17 @@ import '../index.css'
 interface Props {
     title?: string
     description?: string
+    canonicalUrl?: string
+    ogType?: 'website' | 'article'
+    showNoscriptFallback?: boolean
 }
 
 const {
     title = 'Damian Poole',
     description = 'Personal site of Damian Poole.',
+    canonicalUrl,
+    ogType = 'website',
+    showNoscriptFallback = false,
 } = Astro.props
 ---
 
@@ -22,15 +28,25 @@ const {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
         <meta name="description" content={description} />
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content={ogType} />
+        {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
     </head>
     <body>
-        <noscript>
-            <div
-                class="flex min-h-screen w-full flex-col bg-[#303446] text-[#c6d0f5]"
-            >
-                <StaticTerminal />
-            </div>
-        </noscript>
+        {
+            showNoscriptFallback && (
+                <noscript>
+                    <div class="flex min-h-screen w-full flex-col bg-[#303446] text-[#c6d0f5]">
+                        <StaticTerminal />
+                    </div>
+                </noscript>
+            )
+        }
         <slot />
     </body>
 </html>
