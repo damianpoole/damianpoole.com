@@ -12,7 +12,7 @@ const Terminal = () => {
 
     // Typing hooks
     const { displayText: typedCommand, isComplete: commandComplete } =
-        useTypewriter(terminalContent.command, 50, 500)
+        useTypewriter(terminalContent.command, 125, 400)
     const { displayText: typedOutput, isComplete: outputComplete } =
         useTypewriter(step === 2 ? terminalContent.output : '', 5, 0)
 
