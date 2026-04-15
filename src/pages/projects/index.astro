@@ -27,16 +27,16 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
     canonicalUrl={canonicalUrl}
     activeTab="projects"
 >
-    <section class="flex flex-col gap-6">
+    <section class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
         {
             projects.map((project) => {
                 const tech = project.data.tech as string[]
 
                 return (
-                    <article class="border-cat-surface1 border-b pb-6 last:border-b-0 last:pb-0">
-                        <div class="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-                            <div class="max-w-2xl">
-                                <h2 class="mb-3 text-xl font-semibold tracking-tight md:text-2xl">
+                    <article class="border-cat-surface1 bg-cat-mantle/35 flex h-full flex-col rounded-xl border p-5">
+                        <div class="mb-4 flex items-start justify-between gap-3">
+                            <div>
+                                <h2 class="mb-3 text-xl font-semibold tracking-tight">
                                     <a
                                         class="hover:text-cat-blue transition-colors"
                                         href={`/projects/${project.id}/`}
@@ -55,21 +55,7 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
                             )}
                         </div>
 
-                        {project.data.image && (
-                            <a
-                                href={`/projects/${project.id}/`}
-                                class="border-cat-surface1 mb-5 block overflow-hidden rounded-lg border"
-                            >
-                                <img
-                                    src={project.data.image}
-                                    alt={`${project.data.title} screenshot`}
-                                    class="h-auto w-full object-cover"
-                                    loading="lazy"
-                                />
-                            </a>
-                        )}
-
-                        <div class="flex flex-col gap-4">
+                        <div class="mt-auto flex flex-col gap-4">
                             <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
                                 {tech.map((item) => (
                                     <li class="bg-cat-surface0 rounded-full px-3 py-1">
@@ -79,6 +65,12 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
                             </ul>
 
                             <div class="flex flex-wrap gap-4 text-sm">
+                                <a
+                                    class="text-cat-blue hover:underline"
+                                    href={`/projects/${project.id}/`}
+                                >
+                                    Details
+                                </a>
                                 {project.data.githubUrl && (
                                     <a
                                         class="text-cat-blue hover:underline"

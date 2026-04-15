@@ -190,10 +190,10 @@ body {
 .content-terminal h1,
 .content-terminal h2,
 .content-terminal h3 {
-    background-color: transparent;
-    color: var(--color-cat-text);
-    font-size: 1.25rem;
-    padding: 0.25rem 0;
+    background-color: var(--color-cat-pink);
+    color: var(--color-cat-blue);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
     width: fit-content;
     font-weight: 800;
     text-transform: uppercase;
@@ -203,14 +203,35 @@ body {
 }
 
 .content-terminal a {
-    color: var(--color-cat-text);
+    color: var(--color-cat-blue);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-cat-text);
 }
 
 .content-terminal a:hover {
+    text-decoration: underline;
+}
+
+.content-terminal h1:has(a),
+.content-terminal h2:has(a),
+.content-terminal h3:has(a) {
+    background-color: transparent;
+    color: var(--color-cat-text);
+    font-size: 1.25rem;
+    padding: 0.25rem 0;
+}
+
+.content-terminal h1:has(a) a,
+.content-terminal h2:has(a) a,
+.content-terminal h3:has(a) a {
+    color: var(--color-cat-text);
+    border-bottom: 1px solid var(--color-cat-text);
+}
+
+.content-terminal h1:has(a) a:hover,
+.content-terminal h2:has(a) a:hover,
+.content-terminal h3:has(a) a:hover {
     text-decoration: none;
-    border-bottom: none;
+    border-bottom-color: transparent;
 }
 
 .content-terminal p,
