@@ -49,14 +49,7 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
                             <span className="tracking-[0.12em]">
                                 {tab.label}
                             </span>
-                            <span
-                                className={[
-                                    'flex items-center gap-1 text-xs md:text-sm',
-                                    isActive
-                                        ? 'text-cat-green'
-                                        : 'text-cat-overlay1',
-                                ].join(' ')}
-                            >
+                            <span className="text-cat-overlay1 flex items-center gap-1 text-xs md:text-sm">
                                 <Command
                                     className="h-3.5 w-3.5"
                                     strokeWidth={2.25}
