@@ -4,25 +4,31 @@
     "private": true,
     "packageManager": "pnpm@10.28.0",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "typecheck": "tsc -b",
+        "dev": "astro dev",
+        "build": "astro build",
+        "typecheck": "astro check",
         "lint": "eslint .",
         "prettier:write": "prettier --write .",
         "prettier:check": "prettier --check .",
-        "preview": "vite preview"
+        "preview": "astro preview"
     },
     "dependencies": {
+        "@astrojs/react": "^5.0.3",
+        "@astrojs/sitemap": "^3.7.2",
         "@fontsource/geist-mono": "^5.2.7",
         "@fontsource/geist-sans": "^5.2.5",
+        "astro": "^6.1.6",
         "dompurify": "^3.3.3",
         "highlight.js": "^11.11.1",
+        "jsdom": "^29.0.2",
         "lucide-react": "^1.8.0",
         "marked": "^15.0.12",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "sharp": "^0.34.5"
     },
     "devDependencies": {
+        "@astrojs/check": "^0.9.8",
         "@eslint/eslintrc": "^3",
         "@eslint/js": "^9.39.2",
         "@tailwindcss/postcss": "^4",
@@ -32,23 +38,25 @@
         "@testing-library/jest-dom": "^6.6.3",
         "@testing-library/react": "^16.3.0",
         "@types/jest": "^29.5.14",
+        "@types/jsdom": "^28.0.1",
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
-        "@vitejs/plugin-react": "^6.0.1",
         "eslint": "^9",
         "eslint-config-prettier": "^10.1.5",
+        "eslint-plugin-astro": "^1.7.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-react-refresh": "^0.4.26",
         "globals": "^17.0.0",
         "jest": "^29.7.0",
         "jest-environment-jsdom": "^30.0.0-beta.3",
         "prettier": "^3.5.3",
+        "prettier-plugin-astro": "^0.14.1",
         "prettier-plugin-tailwindcss": "^0.6.12",
         "tailwindcss": "^4",
         "typescript": "^5",
-        "typescript-eslint": "^8.58.2",
-        "vite": "^8.0.8"
+        "typescript-eslint": "^8.58.2"
     },
     "pnpm": {
         "overrides": {

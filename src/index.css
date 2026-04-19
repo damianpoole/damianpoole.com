@@ -186,3 +186,85 @@ body {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+
+.content-terminal h1,
+.content-terminal h2,
+.content-terminal h3 {
+    background-color: var(--color-cat-pink);
+    color: var(--color-cat-blue);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    width: fit-content;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-top: 1.5rem;
+}
+
+.content-terminal a {
+    color: var(--color-cat-blue);
+    text-decoration: none;
+}
+
+.content-terminal a:hover {
+    text-decoration: underline;
+}
+
+.content-terminal h1:has(a),
+.content-terminal h2:has(a),
+.content-terminal h3:has(a) {
+    background-color: transparent;
+    color: var(--color-cat-text);
+    font-size: 1.25rem;
+    padding: 0.25rem 0;
+}
+
+.content-terminal h1:has(a) a,
+.content-terminal h2:has(a) a,
+.content-terminal h3:has(a) a {
+    color: var(--color-cat-text);
+    border-bottom: 1px solid var(--color-cat-text);
+}
+
+.content-terminal h1:has(a) a:hover,
+.content-terminal h2:has(a) a:hover,
+.content-terminal h3:has(a) a:hover {
+    text-decoration: none;
+    border-bottom-color: transparent;
+}
+
+.content-terminal p,
+.content-terminal li,
+.content-terminal time,
+.content-terminal blockquote {
+    color: var(--color-cat-text);
+}
+
+.content-terminal blockquote {
+    border-left: 2px solid var(--color-cat-surface1);
+    padding-left: 1rem;
+}
+
+.content-terminal .prose {
+    --tw-prose-body: hsl(var(--cat-text));
+    --tw-prose-headings: hsl(var(--cat-text));
+    --tw-prose-links: hsl(var(--cat-blue));
+    --tw-prose-bold: hsl(var(--cat-rosewater));
+    --tw-prose-quotes: hsl(var(--cat-text));
+    --tw-prose-quote-borders: hsl(var(--cat-surface1));
+    --tw-prose-code: hsl(var(--cat-peach));
+}
+
+.content-terminal .prose,
+.content-terminal .prose p,
+.content-terminal .prose li {
+    font-size: inherit;
+    line-height: 1.7;
+}
+
+.content-terminal .prose h1,
+.content-terminal .prose h2,
+.content-terminal .prose h3 {
+    color: var(--color-cat-base);
+}

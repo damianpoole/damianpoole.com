@@ -1,0 +1,17 @@
+---
+import App from '@/App'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+
+const pageTitle = 'Damian Poole'
+const pageDescription =
+    'Personal site of Damian Poole with a terminal-style homepage, blog, and projects.'
+---
+
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    canonicalUrl="https://damianpoole.com/"
+    showNoscriptFallback
+>
+    <App client:load />
+</BaseLayout>

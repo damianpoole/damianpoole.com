@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import TerminalFrame from '@/components/TerminalFrame'
+
+interface Props {
+    title: string
+    pageTitle?: string
+    description: string
+    eyebrow?: string
+    canonicalUrl?: string
+    ogType?: 'website' | 'article'
+    activeTab?: 'home' | 'blog' | 'projects'
+}
+
+const {
+    title,
+    pageTitle = title,
+    description,
+    eyebrow,
+    canonicalUrl,
+    ogType,
+    activeTab = 'blog',
+} = Astro.props
+---
+
+<BaseLayout
+    title={title}
+    description={description}
+    canonicalUrl={canonicalUrl}
+    ogType={ogType}
+>
+    <TerminalFrame activeTab={activeTab}>
+        <main class="text-cat-text w-full font-mono text-lg md:text-xl">
+            <div class="mb-8 flex flex-col gap-4">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span class="text-cat-blue font-bold">~</span>
+                    <span class="text-cat-subtext0">/</span>
+                    <span class="text-cat-teal font-bold">
+                        {eyebrow?.toLowerCase() ?? 'content'}
+                    </span>
+                    <span class="text-cat-subtext0">via</span>
+                    <span class="text-cat-peach font-bold">astro</span>
+                    <span class="text-cat-green font-bold">❯</span>
+                    <span class="text-cat-text">open {pageTitle}</span>
+                </div>
+                <p class="text-cat-subtext0 max-w-3xl leading-relaxed">
+                    {description}
+                </p>
+            </div>
+            <div class="terminal-output content-terminal space-y-8">
+                <slot />
+            </div>
+        </main>
+    </TerminalFrame>
+</BaseLayout>

@@ -12,7 +12,7 @@ export const terminalContent = {
 Damian is a UK-based software engineer who has been building for the web since the **IE6 era**. He has survived the "Browser Wars," the rise and fall of jQuery, and more "revolutionary" JavaScript frameworks than he cares to admit. With 20 years in the game, he’s seen it all—and usually has the scars to prove it.
 
 ### The System Log
-* **The Day Job:** Currently navigating the complexities of **Full Stack and DevOps** at [AND Digital](https://www.and.digital/). He spends his time orchestrating **Azure/AWS** infrastructure with **Terraform**, wrestling with **GitHub Actions**, and writing **TypeScript/React** that (mostly) works on the first try.
+* **The Day Job:** Currently navigating the complexities of **Full Stack and DevOps** at [AND Digital](https://www.and.digital/). He spends his time orchestrating **Azure/AWS** infrastructure with **Terraform**, wrestling with **GitHub Actions**, and writing **TypeScript** & **Python** that (mostly) works on the first try.
 * **The Philosophy:** A **Stoic Pragmatist**. He believes a simple solution that ships is infinitely superior to a "perfect" one that lives forever in a Jira backlog. 
 * **The Hot Take:** He maintains that modern Agile is largely a collection of expensive meetings that slows down real progress.
 ### Known Vulnerabilities & Interests
