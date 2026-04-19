@@ -1,4 +1,5 @@
 ---
+image: ../../assets/projects/loadstone.png
 title: Loadstone
 description: A RuneScape 3 wiki CLI for fast lookup, structured output, and LLM-friendly game data access.
 order: 2

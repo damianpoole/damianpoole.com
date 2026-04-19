@@ -62,7 +62,7 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
             </nav>
 
             <div className="w-full px-4 pb-4 md:px-8 md:pb-8">
-                <div className="w-full max-w-screen-lg">
+                <div className="w-full">
                     <div className="w-full">{children}</div>
                 </div>
             </div>
