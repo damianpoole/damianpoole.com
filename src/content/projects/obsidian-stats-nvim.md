@@ -2,7 +2,7 @@
 image: ../../assets/projects/obsidian-stats-nvim.png
 title: obsidian-stats.nvim
 description: A Neovim plugin that surfaces useful vault statistics and activity insights for Obsidian users.
-order: 1
+order: 7
 tech:
     - Lua
     - Neovim
