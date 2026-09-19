@@ -2,7 +2,7 @@
 image: ../../assets/projects/loadstone.png
 title: Loadstone
 description: A RuneScape 3 wiki CLI for fast lookup, structured output, and LLM-friendly game data access.
-order: 2
+order: 6
 tech:
     - TypeScript
     - Bun
@@ -22,6 +22,13 @@ The project is designed around structured output, fast lookups, and options that
 - Filter specific sections to reduce context size
 - Fetch RuneMetrics-backed player profile data
 - Return JSON output for scripting and agent use
+- Explore wiki categories and related pages
+- Reduce output with headings-only views and JSON field selection
+- Cache responses locally with configurable expiry
+
+## Using Loadstone
+
+The CLI is published on npm as `loadstone-rs3`. It supports focused player queries for skills and quest progress, alongside wiki searches and page inspection.
 
 ## Why I Built It
 
