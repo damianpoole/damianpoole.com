@@ -38,13 +38,11 @@ const {
         <meta name="twitter:description" content={description} />
     </head>
     <body>
-        {
-            showNoscriptFallback && (
-                <noscript>
-                    <StaticTerminal />
-                </noscript>
-            )
-        }
+        {showNoscriptFallback && (
+            <noscript>
+                <StaticTerminal />
+            </noscript>
+        )}
         <slot />
     </body>
 </html>

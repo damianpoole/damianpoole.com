@@ -3,7 +3,27 @@ overrides:
     yaml@>=2.0.0 <2.8.3: 2.8.3
     js-yaml@>=4.0.0 <4.3.2: 4.3.2
     smol-toml@<1.7.1: 1.7.1
+    vite@*: 'catalog:'
 
 allowBuilds:
     esbuild: true
     sharp: true
+catalog:
+    vite: npm:@voidzero-dev/vite-plus-core@1.2.0
+    vite-plus: 1.2.0
+peerDependencyRules:
+    allowAny:
+        - vite
+    allowedVersions:
+        vite: '*'
+minimumReleaseAgeExclude:
+    - '@voidzero-dev/vite-plus-core@1.2.0'
+    - '@voidzero-dev/vite-plus-darwin-arm64@1.2.0'
+    - '@voidzero-dev/vite-plus-darwin-x64@1.2.0'
+    - '@voidzero-dev/vite-plus-linux-arm64-gnu@1.2.0'
+    - '@voidzero-dev/vite-plus-linux-arm64-musl@1.2.0'
+    - '@voidzero-dev/vite-plus-linux-x64-gnu@1.2.0'
+    - '@voidzero-dev/vite-plus-linux-x64-musl@1.2.0'
+    - '@voidzero-dev/vite-plus-win32-arm64-msvc@1.2.0'
+    - '@voidzero-dev/vite-plus-win32-x64-msvc@1.2.0'
+    - vite-plus@1.2.0
