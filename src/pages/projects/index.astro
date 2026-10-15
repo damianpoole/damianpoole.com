@@ -29,88 +29,86 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
     activeTab="projects"
 >
     <section class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {
-            projects.map((project) => {
-                const tech = project.data.tech as string[]
+        {projects.map((project) => {
+            const tech = project.data.tech as string[]
 
-                return (
-                    <article class="border-cat-surface1 bg-cat-mantle/35 flex h-full flex-col rounded-xl border p-5">
-                        {project.data.image && (
-                            <a
-                                href={`/projects/${project.id}/`}
-                                class="border-cat-surface1 mb-4 block overflow-hidden rounded-lg border"
-                            >
-                                <Image
-                                    src={project.data.image}
-                                    alt={`${project.data.title} screenshot`}
-                                    width={720}
-                                    sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw"
-                                    format="webp"
-                                    quality={80}
-                                    class="aspect-[16/10] h-auto w-full object-cover"
-                                    loading="lazy"
-                                />
-                            </a>
-                        )}
+            return (
+                <article class="border-cat-surface1 bg-cat-mantle/35 flex h-full flex-col rounded-xl border p-5">
+                    {project.data.image && (
+                        <a
+                            href={`/projects/${project.id}/`}
+                            class="border-cat-surface1 mb-4 block overflow-hidden rounded-lg border"
+                        >
+                            <Image
+                                src={project.data.image}
+                                alt={`${project.data.title} screenshot`}
+                                width={720}
+                                sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 100vw"
+                                format="webp"
+                                quality={80}
+                                class="aspect-[16/10] h-auto w-full object-cover"
+                                loading="lazy"
+                            />
+                        </a>
+                    )}
 
-                        <div class="mb-4 flex items-start justify-between gap-3">
-                            <div>
-                                <h2 class="mb-3 text-xl font-semibold tracking-tight">
-                                    <a
-                                        class="hover:text-cat-blue transition-colors"
-                                        href={`/projects/${project.id}/`}
-                                    >
-                                        {project.data.title}
-                                    </a>
-                                </h2>
-                                <p class="text-cat-subtext0 leading-relaxed">
-                                    {project.data.description}
-                                </p>
-                            </div>
-                            {project.data.draft && (
-                                <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1 text-sm">
-                                    Draft
-                                </span>
-                            )}
-                        </div>
-
-                        <div class="mt-auto flex flex-col gap-4">
-                            <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
-                                {tech.map((item) => (
-                                    <li class="bg-cat-surface0 rounded-full px-3 py-1">
-                                        {item}
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div class="flex flex-wrap gap-4 text-sm">
+                    <div class="mb-4 flex items-start justify-between gap-3">
+                        <div>
+                            <h2 class="mb-3 text-xl font-semibold tracking-tight">
                                 <a
-                                    class="text-cat-blue hover:underline"
+                                    class="hover:text-cat-blue transition-colors"
                                     href={`/projects/${project.id}/`}
                                 >
-                                    Details
+                                    {project.data.title}
                                 </a>
-                                {project.data.githubUrl && (
-                                    <a
-                                        class="text-cat-blue hover:underline"
-                                        href={project.data.githubUrl}
-                                    >
-                                        Source
-                                    </a>
-                                )}
-                                {project.data.liveUrl && (
-                                    <a
-                                        class="text-cat-blue hover:underline"
-                                        href={project.data.liveUrl}
-                                    >
-                                        Live Demo
-                                    </a>
-                                )}
-                            </div>
+                            </h2>
+                            <p class="text-cat-subtext0 leading-relaxed">
+                                {project.data.description}
+                            </p>
                         </div>
-                    </article>
-                )
-            })
-        }
+                        {project.data.draft && (
+                            <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1 text-sm">
+                                Draft
+                            </span>
+                        )}
+                    </div>
+
+                    <div class="mt-auto flex flex-col gap-4">
+                        <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
+                            {tech.map((item) => (
+                                <li class="bg-cat-surface0 rounded-full px-3 py-1">
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <div class="flex flex-wrap gap-4 text-sm">
+                            <a
+                                class="text-cat-blue hover:underline"
+                                href={`/projects/${project.id}/`}
+                            >
+                                Details
+                            </a>
+                            {project.data.githubUrl && (
+                                <a
+                                    class="text-cat-blue hover:underline"
+                                    href={project.data.githubUrl}
+                                >
+                                    Source
+                                </a>
+                            )}
+                            {project.data.liveUrl && (
+                                <a
+                                    class="text-cat-blue hover:underline"
+                                    href={project.data.liveUrl}
+                                >
+                                    Live Demo
+                                </a>
+                            )}
+                        </div>
+                    </div>
+                </article>
+            )
+        })}
     </section>
 </ContentLayout>

@@ -48,74 +48,60 @@ const { Content } = await render(project)
     activeTab="projects"
 >
     <div class="mb-8 flex flex-col gap-6">
-        <div
-            class="text-cat-subtext0 flex flex-wrap items-center gap-3 text-sm"
-        >
-            {
-                project.data.draft && (
-                    <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
-                        Draft
-                    </span>
-                )
-            }
-            {
-                tech.map((item) => (
-                    <span class="bg-cat-surface0 text-cat-blue rounded-full px-3 py-1 font-mono">
-                        {item}
-                    </span>
-                ))
-            }
+        <div class="text-cat-subtext0 flex flex-wrap items-center gap-3 text-sm">
+            {project.data.draft && (
+                <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
+                    Draft
+                </span>
+            )}
+            {tech.map((item) => (
+                <span class="bg-cat-surface0 text-cat-blue rounded-full px-3 py-1 font-mono">
+                    {item}
+                </span>
+            ))}
         </div>
 
         <div class="flex flex-wrap gap-4 text-sm">
-            {
-                project.data.githubUrl && (
-                    <a
-                        class="text-cat-blue hover:underline"
-                        href={project.data.githubUrl}
-                    >
-                        Source
-                    </a>
-                )
-            }
-            {
-                project.data.liveUrl && (
-                    <a
-                        class="text-cat-blue hover:underline"
-                        href={project.data.liveUrl}
-                    >
-                        Live Demo
-                    </a>
-                )
-            }
+            {project.data.githubUrl && (
+                <a
+                    class="text-cat-blue hover:underline"
+                    href={project.data.githubUrl}
+                >
+                    Source
+                </a>
+            )}
+            {project.data.liveUrl && (
+                <a
+                    class="text-cat-blue hover:underline"
+                    href={project.data.liveUrl}
+                >
+                    Live Demo
+                </a>
+            )}
         </div>
     </div>
 
-    <div
-        class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-start"
-    >
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,24rem)] lg:items-start">
         <article class="prose prose-invert prose-lg max-w-none leading-relaxed">
             <Content />
         </article>
 
-        {
-            project.data.image && (
-                <aside class="lg:sticky lg:top-6">
-                    <div class="border-cat-surface1 bg-cat-crust/50 overflow-hidden rounded-xl border p-3">
-                        <Image
-                            src={project.data.image}
-                            alt={`${project.data.title} screenshot`}
-                            width={960}
-                            sizes="(min-width: 1024px) 24rem, 100vw"
-                            format="webp"
-                            quality={82}
-                            class="max-h-[24rem] w-full object-contain"
-                            loading="lazy"
-                            decoding="async"
-                        />
-                    </div>
-                </aside>
-            )
-        }
+        {project.data.image && (
+            <aside class="lg:sticky lg:top-6">
+                <div class="border-cat-surface1 bg-cat-crust/50 overflow-hidden rounded-xl border p-3">
+                    <Image
+                        src={project.data.image}
+                        alt={`${project.data.title} screenshot`}
+                        width={960}
+                        sizes="(min-width: 1024px) 24rem, 100vw"
+                        format="webp"
+                        quality={82}
+                        class="max-h-[24rem] w-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </div>
+            </aside>
+        )}
     </div>
 </ContentLayout>

@@ -56,26 +56,20 @@ const formatDate = (date: Date) =>
     ogType="article"
     activeTab="blog"
 >
-    <div
-        class="text-cat-subtext0 mb-8 flex flex-wrap items-center gap-3 text-sm"
-    >
+    <div class="text-cat-subtext0 mb-8 flex flex-wrap items-center gap-3 text-sm">
         <time datetime={post.data.pubDate.toISOString()}>
             {formatDate(post.data.pubDate)}
         </time>
-        {
-            post.data.draft && (
-                <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
-                    Draft
-                </span>
-            )
-        }
-        {
-            tags.map((tag) => (
-                <span class="bg-cat-surface0 text-cat-blue rounded-full px-3 py-1 font-mono">
-                    #{tag}
-                </span>
-            ))
-        }
+        {post.data.draft && (
+            <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
+                Draft
+            </span>
+        )}
+        {tags.map((tag) => (
+            <span class="bg-cat-surface0 text-cat-blue rounded-full px-3 py-1 font-mono">
+                #{tag}
+            </span>
+        ))}
     </div>
 
     <article class="prose prose-invert prose-lg max-w-none leading-relaxed">

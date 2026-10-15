@@ -32,49 +32,45 @@ const formatDate = (date: Date) =>
     activeTab="blog"
 >
     <section class="flex flex-col gap-6">
-        {
-            posts.map((post) =>
-                (() => {
-                    const tags = post.data.tags as string[]
+        {posts.map((post) =>
+            (() => {
+                const tags = post.data.tags as string[]
 
-                    return (
-                        <article class="border-cat-surface1 border-b pb-6 last:border-b-0 last:pb-0">
-                            <div class="text-cat-subtext0 mb-3 flex flex-wrap items-center gap-3 text-sm">
-                                <time
-                                    datetime={post.data.pubDate.toISOString()}
-                                >
-                                    {formatDate(post.data.pubDate)}
-                                </time>
-                                {post.data.draft && (
-                                    <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
-                                        Draft
-                                    </span>
-                                )}
-                            </div>
-                            <h2 class="mb-3 text-xl font-bold tracking-tight md:text-2xl">
-                                <a
-                                    class="hover:text-cat-blue transition-colors"
-                                    href={`/blog/${post.id}/`}
-                                >
-                                    {post.data.title}
-                                </a>
-                            </h2>
-                            <p class="text-cat-subtext0 mb-4 leading-relaxed">
-                                {post.data.description}
-                            </p>
-                            {tags.length > 0 && (
-                                <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
-                                    {tags.map((tag) => (
-                                        <li class="bg-cat-surface0 rounded-full px-3 py-1">
-                                            #{tag}
-                                        </li>
-                                    ))}
-                                </ul>
+                return (
+                    <article class="border-cat-surface1 border-b pb-6 last:border-b-0 last:pb-0">
+                        <div class="text-cat-subtext0 mb-3 flex flex-wrap items-center gap-3 text-sm">
+                            <time datetime={post.data.pubDate.toISOString()}>
+                                {formatDate(post.data.pubDate)}
+                            </time>
+                            {post.data.draft && (
+                                <span class="border-cat-yellow/40 text-cat-yellow rounded-full border px-2 py-1">
+                                    Draft
+                                </span>
                             )}
-                        </article>
-                    )
-                })()
-            )
-        }
+                        </div>
+                        <h2 class="mb-3 text-xl font-bold tracking-tight md:text-2xl">
+                            <a
+                                class="hover:text-cat-blue transition-colors"
+                                href={`/blog/${post.id}/`}
+                            >
+                                {post.data.title}
+                            </a>
+                        </h2>
+                        <p class="text-cat-subtext0 mb-4 leading-relaxed">
+                            {post.data.description}
+                        </p>
+                        {tags.length > 0 && (
+                            <ul class="text-cat-blue flex flex-wrap gap-2 font-mono text-sm">
+                                {tags.map((tag) => (
+                                    <li class="bg-cat-surface0 rounded-full px-3 py-1">
+                                        #{tag}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </article>
+                )
+            })()
+        )}
     </section>
 </ContentLayout>

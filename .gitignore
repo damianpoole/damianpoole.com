@@ -12,6 +12,9 @@
 
 # testing
 /coverage
+/.vitest/
+/.vite/
+/.vite-hooks/_/
 
 # next.js
 /.next/
