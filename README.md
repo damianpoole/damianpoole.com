@@ -4,7 +4,7 @@ Personal website built with Astro, React, TypeScript, and Tailwind CSS. Hosted o
 
 ## Setup
 
-Use Node.js 22.18+, 24.11+, or 26+ and pnpm 11.3.0, then run `pnpm install --frozen-lockfile`. No global Vite+ installation is required; use `pnpm exec vp` for the local CLI.
+Use Node.js 22.22.1+, 24.11+, or 26+ and Git 2.32+ with pnpm 11.3.0, then run `pnpm install --frozen-lockfile`. No global Vite+ installation is required; use `pnpm exec vp` for the local CLI.
 
 ## Scripts
 
@@ -28,3 +28,12 @@ Astro owns the framework pipeline. Use `pnpm exec vp run dev`, `pnpm exec vp run
 Tooling configuration is in `vite.config.ts`; site integrations and aliases remain in `astro.config.ts`. Astro template rules remain in `eslint.config.mjs` because Oxlint cannot run custom-parser rules yet; `pnpm lint` and `pnpm check` include this fallback. Netlify runs `pnpm build` on Node 24.11.0.
 
 The migration preserves the supported TypeScript, React hook, and Astro lint rules. Oxlint does not support the old React Compiler `config` and `gating` rules; `component-hook-factories` is superseded by `react/static-components`. Strict mode replaces `no-dupe-args` and `no-octal`. No Vitest v4 or tsdown compatibility settings are needed because the repository had neither runner configured.
+
+## Commit and push checks
+
+`pnpm install` runs `prepare` to install Vite+'s hook dispatcher without rewriting agent instructions. Hook scripts in `.vite-hooks/` are committed; the generated `.vite-hooks/_/` directory is ignored. Run `pnpm exec vp hooks status` to inspect the current clone, or `pnpm exec vp hooks enable` to enable hooks explicitly. Existing hook setups and explicit local disable preferences are preserved.
+
+- **Pre-commit:** check staged-file formatting, lint JavaScript/TypeScript with Oxlint, and lint Astro templates with ESLint. Checks do not automatically fix files; run `pnpm fmt` and stage the intended changes again when needed.
+- **Pre-push:** run `pnpm check`, `pnpm test`, and `pnpm build`, stopping on the first failure.
+
+Local hooks can be bypassed, so they are a local quality safeguard rather than a security boundary.

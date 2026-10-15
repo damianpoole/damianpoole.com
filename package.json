@@ -4,9 +4,10 @@
     "private": true,
     "packageManager": "pnpm@11.3.0",
     "engines": {
-        "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+        "node": "^22.22.1 || ^24.11.0 || >=26.0.0"
     },
     "scripts": {
+        "prepare": "vp config --no-agent",
         "dev": "astro dev",
         "build": "astro build",
         "typecheck": "astro check",

@@ -11,6 +11,11 @@ function lintGlobals(values: Record<string, boolean>) {
 }
 
 export default defineConfig({
+    staged: {
+        '*': 'vp fmt --check',
+        '*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}': 'vp lint',
+        '*.astro': 'eslint',
+    },
     lint: {
         plugins: ['oxc', 'typescript', 'unicorn'],
         jsPlugins: [

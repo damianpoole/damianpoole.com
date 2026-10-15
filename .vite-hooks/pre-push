@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+pnpm check
+pnpm test
+pnpm build
