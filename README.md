@@ -4,7 +4,7 @@ Personal website built with Astro, React, TypeScript, and Tailwind CSS. Hosted o
 
 ## Setup
 
-Use Node.js 22.22.1+, 24.11+, or 26+ and Git 2.32+ with pnpm 11.3.0, then run `pnpm install --frozen-lockfile`. No global Vite+ installation is required; use `pnpm exec vp` for the local CLI.
+Use Node.js 26.7.0 or later in the Node 26 series and Git 2.32+ with pnpm 11.3.0, then run `pnpm install --frozen-lockfile`. Older Node.js versions are no longer supported. No global Vite+ installation is required; use `pnpm exec vp` for the local CLI.
 
 ## Scripts
 
@@ -25,7 +25,7 @@ Use Node.js 22.22.1+, 24.11+, or 26+ and Git 2.32+ with pnpm 11.3.0, then run `p
 
 Astro owns the framework pipeline. Use `pnpm exec vp run dev`, `pnpm exec vp run build`, and `pnpm exec vp run preview` to run it through Vite+'s task runner. The built-in `vp dev`, `vp build`, and `vp preview` run plain Vite instead and are not the site commands. Astro's internal Vite dependency resolves to Vite+ core via the pnpm override.
 
-Tooling configuration is in `vite.config.ts`; site integrations and aliases remain in `astro.config.ts`. Astro template rules remain in `eslint.config.mjs` because Oxlint cannot run custom-parser rules yet; `pnpm lint` and `pnpm check` include this fallback. Netlify runs `pnpm build` on Node 24.11.0.
+Tooling configuration is in `vite.config.ts`; site integrations and aliases remain in `astro.config.ts`. Astro template rules remain in `eslint.config.mjs` because Oxlint cannot run custom-parser rules yet; `pnpm lint` and `pnpm check` include this fallback. Netlify runs `pnpm build` on Node 26.7.0, as pinned in `netlify.toml`.
 
 The migration preserves the supported TypeScript, React hook, and Astro lint rules. Oxlint does not support the old React Compiler `config` and `gating` rules; `component-hook-factories` is superseded by `react/static-components`. Strict mode replaces `no-dupe-args` and `no-octal`. No Vitest v4 or tsdown compatibility settings are needed because the repository had neither runner configured.
 
