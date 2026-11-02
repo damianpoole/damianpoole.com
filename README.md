@@ -37,3 +37,15 @@ The migration preserves the supported TypeScript, React hook, and Astro lint rul
 - **Pre-push:** run `pnpm check`, `pnpm test`, and `pnpm build`, stopping on the first failure.
 
 Local hooks can be bypassed, so they are a local quality safeguard rather than a security boundary.
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs the same verification as the pre-push hook on pull requests targeting `main`, pushes to `main`, and manual dispatches:
+
+- `pnpm check` — formatting, linting, and TypeScript/Astro checks.
+- `pnpm test` — regression tests.
+- `pnpm build` — the Astro production build (not the plain Vite `vp build` command).
+
+The workflow uses `voidzero-dev/setup-vp` to select Node.js from `package.json`, resolve Vite+ from the project's catalog, and install dependencies with a frozen lockfile and package-manager caching. Actions are pinned to commit SHAs. The workflow has read-only repository permissions, does not retain checkout credentials, and does not deploy the site or require secrets.
+
+After the first workflow run, select **Verify** as a required status check in the `main` branch ruleset. Keep the pull-request requirement enabled so changes must pass CI before you merge them. Netlify remains responsible for production deployments after a merge to `main`.
