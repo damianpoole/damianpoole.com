@@ -1,13 +1,9 @@
 overrides:
+    # ESLint and typescript-estree still require minimatch 10; the fix is only in 11+.
     minimatch@<11.0.1: 11.0.1
-    yaml@>=2.0.0 <2.8.3: 2.8.3
-    js-yaml@>=4.0.0 <4.3.2: 4.3.2
-    smol-toml@<1.9.0: 1.9.0
+    # @tailwindcss/typography still pins the vulnerable postcss-selector-parser 6.0.10.
     postcss-selector-parser@<7.1.6: 7.1.6
-    fast-uri@>=3.0.0 <3.1.9: 3.1.9
-    undici@>=7.0.0 <7.30.1: 7.30.1
-    undici@>=8.0.0 <8.12.2: 8.12.2
-    zod@<4.6.6: 4.6.6
+    # Keep the Vite+ core alias consistent throughout the dependency tree.
     vite@*: 'catalog:'
 
 allowBuilds:
