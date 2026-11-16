@@ -1,4 +1,6 @@
 overrides:
+    # Match the stable @emnapi/core ABI used by Astro's WASM type checker.
+    '@emnapi/runtime': 1.11.3
     # ESLint and typescript-estree still require minimatch 10; the fix is only in 11+.
     minimatch@<11.0.1: 11.0.1
     # @tailwindcss/typography still pins the vulnerable postcss-selector-parser 6.0.10.
