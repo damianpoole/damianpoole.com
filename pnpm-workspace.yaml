@@ -30,3 +30,9 @@ minimumReleaseAgeExclude:
     - '@voidzero-dev/vite-plus-win32-arm64-msvc@1.2.0'
     - '@voidzero-dev/vite-plus-win32-x64-msvc@1.2.0'
     - vite-plus@1.2.0
+
+patchedDependencies:
+    # Reject repeated extglobs for GHSA-fc5q-39xc-vjpf until fixed releases replace both installed versions.
+    # Dependabot still sees the npm versions; keep alert #146 open to track the upgrade.
+    picomatch@2.3.2: patches/picomatch@2.3.2.patch
+    picomatch@4.0.7: patches/picomatch@4.0.7.patch
