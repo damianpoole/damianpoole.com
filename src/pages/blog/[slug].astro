@@ -6,15 +6,13 @@ import {
     type CollectionEntry,
 } from 'astro:content'
 import ContentLayout from '@/layouts/ContentLayout.astro'
+import { formatDate, showEntry } from '@/utils/content'
 
 export async function getStaticPaths() {
     const entries = await getCollection('blog')
 
     return entries
-        .filter(
-            (entry: CollectionEntry<'blog'>) =>
-                !import.meta.env.PROD || !entry.data.draft
-        )
+        .filter((entry: CollectionEntry<'blog'>) => showEntry(entry.data.draft))
         .map((entry: CollectionEntry<'blog'>) => ({
             params: { slug: entry.id },
         }))
@@ -28,7 +26,7 @@ if (!slug) {
 
 const post = await getEntry('blog', slug)
 
-if (!post || (import.meta.env.PROD && post.data.draft)) {
+if (!post || !showEntry(post.data.draft)) {
     return Astro.redirect('/404')
 }
 
@@ -37,14 +35,6 @@ const tags = post.data.tags as string[]
 const { Content } = await render(post)
 
 const pageTitle = `${post.data.title} | Damian Poole`
-const canonicalUrl = `https://damianpoole.com/blog/${post.id}/`
-
-const formatDate = (date: Date) =>
-    date.toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-    })
 ---
 
 <ContentLayout
@@ -52,7 +42,6 @@ const formatDate = (date: Date) =>
     pageTitle={post.data.title}
     description={post.data.description}
     eyebrow="Blog"
-    canonicalUrl={canonicalUrl}
     ogType="article"
     activeTab="blog"
 >

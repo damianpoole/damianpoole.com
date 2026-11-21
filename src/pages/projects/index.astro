@@ -2,8 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content'
 import { Image } from 'astro:assets'
 import ContentLayout from '@/layouts/ContentLayout.astro'
-
-const showEntry = (draft: boolean) => !import.meta.env.PROD || !draft
+import { showEntry } from '@/utils/content'
 
 const projects = (await getCollection('projects'))
     .filter((entry: CollectionEntry<'projects'>) => showEntry(entry.data.draft))
@@ -17,7 +16,6 @@ const projects = (await getCollection('projects'))
 const pageTitle = 'Projects | Damian Poole'
 const pageDescription =
     'Developer tools, AI workflows, and web experiments by Damian Poole.'
-const canonicalUrl = 'https://damianpoole.com/projects/'
 ---
 
 <ContentLayout
@@ -25,7 +23,6 @@ const canonicalUrl = 'https://damianpoole.com/projects/'
     pageTitle="Projects"
     description={pageDescription}
     eyebrow="Work"
-    canonicalUrl={canonicalUrl}
     activeTab="projects"
 >
     <section class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">

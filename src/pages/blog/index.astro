@@ -1,8 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content'
 import ContentLayout from '@/layouts/ContentLayout.astro'
-
-const showEntry = (draft: boolean) => !import.meta.env.PROD || !draft
+import { formatDate, showEntry } from '@/utils/content'
 
 const posts = (await getCollection('blog'))
     .filter((entry: CollectionEntry<'blog'>) => showEntry(entry.data.draft))
@@ -13,14 +12,6 @@ const posts = (await getCollection('blog'))
 
 const pageTitle = 'Blog | Damian Poole'
 const pageDescription = 'Notes on engineering, tooling, and projects.'
-const canonicalUrl = 'https://damianpoole.com/blog/'
-
-const formatDate = (date: Date) =>
-    date.toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-    })
 ---
 
 <ContentLayout
@@ -28,7 +19,6 @@ const formatDate = (date: Date) =>
     pageTitle="Blog"
     description={pageDescription}
     eyebrow="Writing"
-    canonicalUrl={canonicalUrl}
     activeTab="blog"
 >
     <section class="flex flex-col gap-6">
