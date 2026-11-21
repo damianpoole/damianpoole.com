@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import TerminalFrame from '@/components/TerminalFrame'
+
+const pageTitle = '404: Page Not Found | Damian Poole'
+const pageDescription = 'The requested page could not be found.'
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+    <TerminalFrame>
+        <div class="text-cat-text w-full font-mono text-lg md:text-xl">
+            <div class="mb-8 flex flex-col gap-4">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                    <span class="text-cat-blue font-bold">~</span>
+                    <span class="text-cat-subtext0">/</span>
+                    <span class="text-cat-red font-bold">404</span>
+                    <span class="text-cat-subtext0">via</span>
+                    <span class="text-cat-peach font-bold">astro</span>
+                    <span class="text-cat-red font-bold" aria-hidden="true">
+                        ❯
+                    </span>
+                    <span class="text-cat-text">open page</span>
+                </div>
+                <p class="text-cat-subtext0 max-w-3xl leading-relaxed">
+                    stderr: no such file or directory. The page you requested
+                    does not exist or may have moved.
+                </p>
+            </div>
+
+            <div class="terminal-output content-terminal space-y-6">
+                <h1>Error 404</h1>
+                <p class="max-w-3xl leading-relaxed">
+                    Try one of the available destinations below:
+                </p>
+                <ul class="flex flex-wrap gap-6 text-base md:text-lg">
+                    <li>
+                        <a href="/">cd ~ (Home)</a>
+                    </li>
+                    <li>
+                        <a href="/blog/">cd ~/blog</a>
+                    </li>
+                    <li>
+                        <a href="/projects/">cd ~/projects</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </TerminalFrame>
+</BaseLayout>

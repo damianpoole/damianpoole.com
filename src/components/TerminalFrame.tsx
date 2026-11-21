@@ -1,10 +1,9 @@
-import { Command } from 'lucide-react'
 import { type ReactNode } from 'react'
 
 type TabKey = 'home' | 'blog' | 'projects'
 
 interface TerminalFrameProps {
-    activeTab: TabKey
+    activeTab?: TabKey
     children: ReactNode
 }
 
@@ -12,16 +11,10 @@ const tabs: Array<{
     key: TabKey
     label: string
     href: string
-    shortcut: string
 }> = [
-    { key: 'home', label: 'Home', href: '/', shortcut: '1' },
-    { key: 'blog', label: 'Blog', href: '/blog/', shortcut: '2' },
-    {
-        key: 'projects',
-        label: 'Projects',
-        href: '/projects/',
-        shortcut: '3',
-    },
+    { key: 'home', label: 'Home', href: '/' },
+    { key: 'blog', label: 'Blog', href: '/blog/' },
+    { key: 'projects', label: 'Projects', href: '/projects/' },
 ]
 
 const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
@@ -40,7 +33,7 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
                             href={tab.href}
                             aria-current={isActive ? 'page' : undefined}
                             className={[
-                                'border-cat-surface1 flex min-w-[8.5rem] items-center justify-between gap-4 rounded-t-lg border border-b-0 px-3 py-2 transition-colors',
+                                'border-cat-surface1 flex min-w-[8.5rem] items-center justify-center rounded-t-lg border border-b-0 px-4 py-2 transition-colors',
                                 isActive
                                     ? 'bg-cat-base text-cat-green'
                                     : 'bg-cat-mantle text-cat-subtext0 hover:bg-cat-surface0 hover:text-cat-text',
@@ -48,14 +41,6 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
                         >
                             <span className="tracking-[0.12em]">
                                 {tab.label}
-                            </span>
-                            <span className="text-cat-overlay1 flex items-center gap-1 text-xs md:text-sm">
-                                <Command
-                                    aria-hidden="true"
-                                    className="h-3.5 w-3.5"
-                                    strokeWidth={2.25}
-                                />
-                                <span>{tab.shortcut}</span>
                             </span>
                         </a>
                     )

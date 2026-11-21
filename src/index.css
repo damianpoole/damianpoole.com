@@ -118,6 +118,9 @@
     /* Radius */
     --radius: 0.5rem;
 
+    /* Animations */
+    --animate-fade-in: fade-in 300ms ease-out;
+
     /* Typography Prose Customizations */
     --tw-prose-body: hsl(var(--foreground-hsl));
     --tw-prose-headings: hsl(var(--foreground-hsl));
@@ -135,6 +138,15 @@
     --tw-prose-pre-bg: #d1d5db; /* Choose a specific color for code blocks bg */
     --tw-prose-th-borders: hsl(var(--border-hsl));
     --tw-prose-td-borders: hsl(var(--border-hsl));
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 body {
@@ -190,7 +202,7 @@ body {
 .content-terminal h2,
 .content-terminal h3 {
     background-color: var(--color-cat-pink);
-    color: var(--color-cat-blue);
+    color: var(--color-cat-base);
     font-size: 0.75rem;
     padding: 0.25rem 0.5rem;
     width: fit-content;
