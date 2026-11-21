@@ -1,22 +1,28 @@
-Personal website built with React, TypeScript, Vite, and Tailwind CSS. Hosted on Netlify.
+Personal website built with Astro, React, TypeScript, and Tailwind CSS. Hosted on Netlify. Vite+ provides Vite/Rolldown, Oxlint, Oxfmt, and Vitest.
 
 ## Scripts
 
-| Command               | Description              |
-| --------------------- | ------------------------ |
-| `pnpm dev`            | Start dev server         |
-| `pnpm build`          | build for prod           |
-| `pnpm typecheck`      | Type-check               |
-| `pnpm preview`        | Preview production build |
-| `pnpm lint`           | Run ESLint               |
-| `pnpm prettier:write` | Format with Prettier     |
-| `pnpm prettier:check` | Check formatting         |
+| Command               | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| `pnpm dev`            | Start the Astro dev server                                  |
+| `pnpm build`          | Build the static site into `dist`                           |
+| `pnpm preview`        | Preview the Astro production build                          |
+| `pnpm typecheck`      | Check TypeScript and Astro templates (`astro check`)        |
+| `pnpm lint`           | Run Vite+ linting (Oxlint) and Astro template linting       |
+| `pnpm lint:astro`     | Run the Astro-only ESLint compatibility fallback            |
+| `pnpm fmt`            | Format with Vite+ (Oxfmt), including Astro and Tailwind     |
+| `pnpm fmt:check`      | Check formatting                                            |
+| `pnpm check`          | Run Vite+ format/lint/type checks and Astro template checks |
+| `pnpm test`           | Run the Vitest regression tests once                        |
+| `pnpm prettier:write` | Compatibility alias for `pnpm fmt`                          |
+| `pnpm prettier:check` | Compatibility alias for `pnpm fmt:check`                    |
 
 Whenever a change is made to the codebase please run the following commands:
 
-- `pnpm lint`
-- `pnpm prettier:write`
-- `pnpm typecheck`
+- `pnpm fmt`
+- `pnpm check`
+- `pnpm test`
+- `pnpm build`
 
 ## Commit and push policy
 

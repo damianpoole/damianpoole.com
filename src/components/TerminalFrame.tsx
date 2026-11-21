@@ -26,7 +26,7 @@ const tabs: Array<{
 
 const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
     return (
-        <div className="text-cat-text flex min-h-screen w-full flex-col bg-[#303446] font-mono text-lg md:text-xl">
+        <div className="bg-cat-base text-cat-text flex min-h-screen w-full flex-col font-mono text-lg md:text-xl">
             <nav
                 aria-label="Primary"
                 className="border-cat-surface1 bg-cat-crust/35 mb-5 flex w-full flex-wrap items-end gap-2 border-b px-4 pt-4 text-sm md:px-8 md:pt-4 md:text-base"

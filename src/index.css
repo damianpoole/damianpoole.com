@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
-@import 'highlight.js/styles/atom-one-dark.css';
 
 /* 
   Define HSL color values in :root for the permanent dark terminal aesthetic.
