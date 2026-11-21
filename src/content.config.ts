@@ -1,9 +1,10 @@
 import { defineCollection } from 'astro:content'
 import { glob } from 'astro/loaders'
 import { z } from 'astro/zod'
+import { isHttpUrl } from './utils/content'
 
-const urlField = z.string().refine((value) => URL.canParse(value), {
-    message: 'Must be a valid URL',
+const urlField = z.string().refine(isHttpUrl, {
+    message: 'Must be a valid http(s) URL',
 })
 
 const blog = defineCollection({

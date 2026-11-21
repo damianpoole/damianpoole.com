@@ -13,7 +13,6 @@ const outputNodes = safeRenderMarkdownToNodes(terminalContent.output)
 <BaseLayout
     title={pageTitle}
     description={pageDescription}
-    canonicalUrl="https://damianpoole.com/"
     showNoscriptFallback
 >
     <App client:load outputNodes={outputNodes} />

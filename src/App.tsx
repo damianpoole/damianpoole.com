@@ -7,7 +7,7 @@ interface AppProps {
 
 function App({ outputNodes }: AppProps) {
     return (
-        <div className="flex min-h-screen w-full flex-col bg-[#303446] text-[#c6d0f5]">
+        <div className="bg-cat-base flex min-h-screen w-full flex-col text-[#c6d0f5]">
             <Terminal outputNodes={outputNodes} />
         </div>
     )

@@ -2,6 +2,7 @@
 title: Hello Astro
 description: A sample post used to validate the new file-based blog workflow.
 pubDate: 2026-04-14
+draft: true
 tags:
     - astro
     - migration

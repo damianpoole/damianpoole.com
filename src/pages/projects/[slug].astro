@@ -7,14 +7,14 @@ import {
 } from 'astro:content'
 import { getImage, Image } from 'astro:assets'
 import ContentLayout from '@/layouts/ContentLayout.astro'
+import { showEntry } from '@/utils/content'
 
 export async function getStaticPaths() {
     const entries = await getCollection('projects')
 
     return entries
-        .filter(
-            (entry: CollectionEntry<'projects'>) =>
-                !import.meta.env.PROD || !entry.data.draft
+        .filter((entry: CollectionEntry<'projects'>) =>
+            showEntry(entry.data.draft)
         )
         .map((entry: CollectionEntry<'projects'>) => ({
             params: { slug: entry.id },
@@ -29,13 +29,12 @@ if (!slug) {
 
 const project = await getEntry('projects', slug)
 
-if (!project || (import.meta.env.PROD && project.data.draft)) {
+if (!project || !showEntry(project.data.draft)) {
     return Astro.redirect('/404')
 }
 
 const tech = project.data.tech as string[]
 const pageTitle = `${project.data.title} | Projects | Damian Poole`
-const canonicalUrl = `https://damianpoole.com/projects/${project.id}/`
 const socialImage = project.data.image
     ? await getImage({
           src: project.data.image,
@@ -52,7 +51,6 @@ const { Content } = await render(project)
     pageTitle={project.data.title}
     description={project.data.description}
     eyebrow="Project"
-    canonicalUrl={canonicalUrl}
     ogImage={socialImage?.src}
     ogImageAlt={socialImage ? `${project.data.title} screenshot` : undefined}
     activeTab="projects"

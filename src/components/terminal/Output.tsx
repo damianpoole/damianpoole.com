@@ -57,7 +57,10 @@ export const Output = ({
     if (isProcessing) {
         return (
             <div className="text-cat-subtext0 animate-in fade-in mb-4 flex items-center gap-2 duration-300">
-                <span className="animate-spin">⟳</span> Processing request...
+                <span aria-hidden="true" className="animate-spin">
+                    ⟳
+                </span>{' '}
+                Processing request...
             </div>
         )
     }
@@ -74,7 +77,10 @@ export const Output = ({
                 {renderedNodes}
             </div>
             {isTyping && (
-                <span className="bg-cat-blue mt-4 inline-block h-6 w-3 animate-pulse align-middle"></span>
+                <span
+                    aria-hidden="true"
+                    className="bg-cat-blue mt-4 inline-block h-6 w-3 animate-pulse align-middle"
+                ></span>
             )}
         </div>
     )
