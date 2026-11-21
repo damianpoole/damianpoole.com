@@ -104,4 +104,40 @@ describe('useTypewriter', () => {
 
         expect(result.current).toEqual({ displayText: 'ab', isComplete: true })
     })
+
+    it('restarts typing when returning to previously completed text before the intermediate run ticks', () => {
+        vi.useFakeTimers()
+
+        const { result, rerender } = renderHook(
+            ({ text }) => useTypewriter(text, 20, 100),
+            {
+                initialProps: { text: 'A' },
+            }
+        )
+
+        act(() => {
+            vi.advanceTimersByTime(120)
+        })
+
+        expect(result.current).toEqual({ displayText: 'A', isComplete: true })
+
+        rerender({ text: 'B' })
+        expect(result.current).toEqual({ displayText: '', isComplete: false })
+
+        // Switch back to 'A' before 'B' finishes its startDelay / first tick.
+        rerender({ text: 'A' })
+        expect(result.current).toEqual({ displayText: '', isComplete: false })
+
+        act(() => {
+            vi.advanceTimersByTime(100)
+        })
+
+        expect(result.current).toEqual({ displayText: '', isComplete: false })
+
+        act(() => {
+            vi.advanceTimersByTime(20)
+        })
+
+        expect(result.current).toEqual({ displayText: 'A', isComplete: true })
+    })
 })

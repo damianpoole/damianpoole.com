@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const FRAME_MS = 16
 
 interface RevealState {
-    key: string | number
+    token: object
     count: number
 }
 
@@ -15,28 +15,22 @@ export const useRevealCount = (
     skip: boolean = false,
     resetKey: string | number = totalLength
 ) => {
+    const runToken = useMemo(
+        () => ({ totalLength, speed, startDelay, active, skip, resetKey }),
+        [totalLength, speed, startDelay, active, skip, resetKey]
+    )
     const [state, setState] = useState<RevealState>({
-        key: resetKey,
+        token: runToken,
         count: 0,
     })
 
     useEffect(() => {
-        let cancelled = false
-        let timeoutId: ReturnType<typeof setTimeout> | undefined
-
         if (!active || skip || totalLength <= 0) {
-            timeoutId = setTimeout(() => {
-                if (!cancelled) {
-                    setState({ key: resetKey, count: 0 })
-                }
-            }, 0)
-
-            return () => {
-                cancelled = true
-                clearTimeout(timeoutId)
-            }
+            return
         }
 
+        let cancelled = false
+        let timeoutId: ReturnType<typeof setTimeout> | undefined
         const tickInterval = Math.max(speed, FRAME_MS)
         const charsPerTick = Math.max(1, Math.round(tickInterval / speed))
 
@@ -49,7 +43,7 @@ export const useRevealCount = (
                     totalLength,
                     currentIndex + charsPerTick
                 )
-                setState({ key: resetKey, count: currentIndex })
+                setState({ token: runToken, count: currentIndex })
                 if (currentIndex < totalLength) {
                     timeoutId = setTimeout(typeStep, tickInterval)
                 }
@@ -70,9 +64,9 @@ export const useRevealCount = (
             cancelled = true
             clearTimeout(timeoutId)
         }
-    }, [totalLength, speed, startDelay, active, skip, resetKey])
+    }, [totalLength, speed, startDelay, active, skip, runToken])
 
-    const currentCount = state.key === resetKey ? state.count : 0
+    const currentCount = state.token === runToken ? state.count : 0
     const visibleCount = skip
         ? totalLength
         : active
