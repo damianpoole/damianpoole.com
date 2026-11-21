@@ -1,10 +1,13 @@
 ---
 import App from '@/App'
+import { terminalContent } from '@/data/terminalContent'
 import BaseLayout from '@/layouts/BaseLayout.astro'
+import { safeRenderMarkdownToNodes } from '@/utils/sanitizeHtml.server'
 
 const pageTitle = 'Damian Poole'
 const pageDescription =
     'Personal site of Damian Poole with a terminal-style homepage, blog, and projects.'
+const outputNodes = safeRenderMarkdownToNodes(terminalContent.output)
 ---
 
 <BaseLayout
@@ -13,5 +16,5 @@ const pageDescription =
     canonicalUrl="https://damianpoole.com/"
     showNoscriptFallback
 >
-    <App client:load />
+    <App client:load outputNodes={outputNodes} />
 </BaseLayout>
