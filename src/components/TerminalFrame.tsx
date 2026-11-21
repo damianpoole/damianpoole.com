@@ -51,6 +51,7 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
                             </span>
                             <span className="text-cat-overlay1 flex items-center gap-1 text-xs md:text-sm">
                                 <Command
+                                    aria-hidden="true"
                                     className="h-3.5 w-3.5"
                                     strokeWidth={2.25}
                                 />
@@ -61,11 +62,11 @@ const TerminalFrame = ({ activeTab, children }: TerminalFrameProps) => {
                 })}
             </nav>
 
-            <div className="w-full px-4 pb-4 md:px-8 md:pb-8">
+            <main className="w-full px-4 pb-4 md:px-8 md:pb-8">
                 <div className="w-full">
                     <div className="w-full">{children}</div>
                 </div>
-            </div>
+            </main>
         </div>
     )
 }
