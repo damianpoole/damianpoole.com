@@ -15,7 +15,11 @@ export const Prompt = ({ path, branch, nodeVersion }: PromptProps) => (
 
         {/* Git Branch Segment */}
         <div className="flex items-center gap-1">
-            <GitBranch className="text-cat-blue h-5 w-5" strokeWidth={2.5} />
+            <GitBranch
+                aria-hidden="true"
+                className="text-cat-blue h-5 w-5"
+                strokeWidth={2.5}
+            />
             <span className="text-cat-blue font-bold">{branch}</span>
         </div>
 
@@ -23,10 +27,12 @@ export const Prompt = ({ path, branch, nodeVersion }: PromptProps) => (
 
         {/* Node Version Segment */}
         <div className="flex items-center gap-1">
-            <Package className="text-cat-green h-5 w-5" />
+            <Package aria-hidden="true" className="text-cat-green h-5 w-5" />
             <span className="text-cat-green font-bold">{nodeVersion}</span>
         </div>
 
-        <span className="text-cat-green font-bold">❯</span>
+        <span aria-hidden="true" className="text-cat-green font-bold">
+            ❯
+        </span>
     </div>
 )

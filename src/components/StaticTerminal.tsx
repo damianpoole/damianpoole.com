@@ -11,7 +11,12 @@ const StaticTerminal = () => {
             <div className="text-cat-text w-full font-mono text-lg md:text-xl">
                 <Prompt {...terminalContent.prompt} />
                 <div className="mb-6 flex items-center gap-2">
-                    <span className="text-cat-blue font-bold">❯</span>
+                    <span
+                        aria-hidden="true"
+                        className="text-cat-blue font-bold"
+                    >
+                        ❯
+                    </span>
                     <span className="text-cat-text">
                         {terminalContent.command}
                     </span>
