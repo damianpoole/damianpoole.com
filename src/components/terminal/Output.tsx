@@ -80,7 +80,10 @@ export const Output = ({
 }: OutputProps) => {
     if (isProcessing) {
         return (
-            <div className="text-cat-subtext0 animate-in fade-in mb-4 flex items-center gap-2 duration-300">
+            <div
+                key="processing"
+                className="text-cat-subtext0 motion-safe:animate-fade-in mb-4 flex items-center gap-2"
+            >
                 <span aria-hidden="true" className="animate-spin">
                     ⟳
                 </span>{' '}
@@ -95,9 +98,10 @@ export const Output = ({
 
     return (
         <div
+            key="output"
             ref={outputRef}
             tabIndex={-1}
-            className="terminal-output animate-in fade-in duration-300 focus:outline-none"
+            className="terminal-output motion-safe:animate-fade-in focus:outline-none"
         >
             <div className="prose prose-invert prose-lg max-w-none leading-relaxed">
                 {renderedNodes}
