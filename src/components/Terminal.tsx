@@ -23,25 +23,50 @@ const IGNORED_SKIP_KEYS = new Set([
     'CapsLock',
 ])
 
-const subscribeReducedMotion = (callback: () => void) => {
-    if (
-        typeof window === 'undefined' ||
-        typeof window.matchMedia !== 'function'
-    ) {
-        return () => {}
+const createReducedMotionLatch = () => {
+    let latched = false
+
+    const readMatches = () =>
+        typeof window !== 'undefined' &&
+        typeof window.matchMedia === 'function' &&
+        window.matchMedia(REDUCED_MOTION_QUERY).matches
+
+    return {
+        subscribe: (callback: () => void) => {
+            if (
+                typeof window === 'undefined' ||
+                typeof window.matchMedia !== 'function'
+            ) {
+                return () => {}
+            }
+
+            const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY)
+            if (mediaQuery.matches) {
+                latched = true
+            }
+
+            const handleChange = () => {
+                if (mediaQuery.matches && !latched) {
+                    latched = true
+                    callback()
+                }
+            }
+
+            mediaQuery.addEventListener('change', handleChange)
+            return () => mediaQuery.removeEventListener('change', handleChange)
+        },
+        getSnapshot: () => {
+            if (latched) {
+                return true
+            }
+            if (readMatches()) {
+                latched = true
+            }
+            return latched
+        },
+        getServerSnapshot: () => false,
     }
-
-    const mediaQuery = window.matchMedia(REDUCED_MOTION_QUERY)
-    mediaQuery.addEventListener('change', callback)
-    return () => mediaQuery.removeEventListener('change', callback)
 }
-
-const getReducedMotionSnapshot = () =>
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia(REDUCED_MOTION_QUERY).matches
-
-const getReducedMotionServerSnapshot = () => false
 
 interface TerminalProps {
     outputNodes: readonly TerminalNode[]
@@ -50,14 +75,15 @@ interface TerminalProps {
 const Terminal = ({ outputNodes }: TerminalProps) => {
     const [step, setStep] = useState<0 | 1 | 2>(0) // 0: typing command, 1: loading, 2: typing output
     const [userSkipped, setUserSkipped] = useState(false)
+    const [reducedMotionStore] = useState(createReducedMotionLatch)
 
-    const prefersReducedMotion = useSyncExternalStore(
-        subscribeReducedMotion,
-        getReducedMotionSnapshot,
-        getReducedMotionServerSnapshot
+    const skippedByReducedMotion = useSyncExternalStore(
+        reducedMotionStore.subscribe,
+        reducedMotionStore.getSnapshot,
+        reducedMotionStore.getServerSnapshot
     )
 
-    const isSkipped = userSkipped || prefersReducedMotion
+    const isSkipped = userSkipped || skippedByReducedMotion
     const effectiveStep: 0 | 1 | 2 = isSkipped ? 2 : step
     const totalOutputChars = useMemo(
         () => countTerminalChars(outputNodes),
@@ -98,13 +124,6 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
             }
             if (IGNORED_SKIP_KEYS.has(event.key)) {
                 return
-            }
-
-            if (event.key === ' ') {
-                const target = event.target as Element | null
-                if (!target?.closest('a, button, input, textarea, select')) {
-                    event.preventDefault()
-                }
             }
 
             setUserSkipped(true)
@@ -151,20 +170,27 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
                     isTyping={effectiveStep === 0}
                 />
 
+                {!isAnimationComplete && (
+                    <div className="mb-4">
+                        <button
+                            type="button"
+                            onClick={() => setUserSkipped(true)}
+                            className="border-cat-surface1 bg-cat-mantle text-cat-subtext0 hover:bg-cat-surface0 hover:text-cat-text focus-visible:outline-cat-blue rounded border px-2.5 py-1 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+                        >
+                            Skip animation
+                        </button>
+                    </div>
+                )}
+
                 {/* Output */}
                 {(effectiveStep === 1 || effectiveStep === 2) && (
                     <Output
                         nodes={outputNodes}
                         visibleChars={visibleOutputChars}
+                        showAll={isAnimationComplete}
                         isProcessing={effectiveStep === 1}
                         isTyping={effectiveStep === 2 && !outputComplete}
                     />
-                )}
-
-                {!isAnimationComplete && (
-                    <p className="text-cat-overlay1 mt-4 text-xs">
-                        Click or press any key to skip animation
-                    </p>
                 )}
             </div>
         </TerminalFrame>

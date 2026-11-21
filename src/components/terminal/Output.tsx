@@ -4,8 +4,29 @@ import { VOID_HTML_TAGS, type TerminalNode } from '@/utils/terminalNodes'
 interface OutputProps {
     nodes: readonly TerminalNode[]
     visibleChars: number
+    showAll: boolean
     isProcessing: boolean
     isTyping: boolean
+}
+
+const renderAllTerminalNodes = (
+    nodes: readonly TerminalNode[],
+    keyPrefix: string
+): ReactNode[] => {
+    return nodes.map((node, index) => {
+        const key = `${keyPrefix}-${index}`
+
+        if (node.type === 'text') {
+            return node.text
+        }
+
+        if (VOID_HTML_TAGS.has(node.tag)) {
+            return createElement(node.tag, { key, ...node.attrs })
+        }
+
+        const children = renderAllTerminalNodes(node.children, key)
+        return createElement(node.tag, { key, ...node.attrs }, ...children)
+    })
 }
 
 const renderTerminalNodes = (
@@ -51,6 +72,7 @@ const renderTerminalNodes = (
 export const Output = ({
     nodes,
     visibleChars,
+    showAll,
     isProcessing,
     isTyping,
 }: OutputProps) => {
@@ -65,11 +87,9 @@ export const Output = ({
         )
     }
 
-    const renderedNodes = renderTerminalNodes(
-        nodes,
-        { remaining: visibleChars },
-        'out'
-    )
+    const renderedNodes = showAll
+        ? renderAllTerminalNodes(nodes, 'out')
+        : renderTerminalNodes(nodes, { remaining: visibleChars }, 'out')
 
     return (
         <div className="terminal-output animate-in fade-in duration-300">

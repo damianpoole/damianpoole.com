@@ -1,13 +1,13 @@
 ---
 import App from '@/App'
-import { terminalContent } from '@/data/terminalContent'
+import { terminalOutputMarkdown } from '@/data/terminalOutput.server'
 import BaseLayout from '@/layouts/BaseLayout.astro'
 import { safeRenderMarkdownToNodes } from '@/utils/sanitizeHtml.server'
 
 const pageTitle = 'Damian Poole'
 const pageDescription =
     'Personal site of Damian Poole with a terminal-style homepage, blog, and projects.'
-const outputNodes = safeRenderMarkdownToNodes(terminalContent.output)
+const outputNodes = safeRenderMarkdownToNodes(terminalOutputMarkdown)
 ---
 
 <BaseLayout

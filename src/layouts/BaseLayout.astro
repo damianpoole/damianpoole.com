@@ -57,8 +57,8 @@ const twitterCard = resolvedOgImage ? 'summary_large_image' : 'summary'
         {resolvedOgImage && (
             <meta name="twitter:image" content={resolvedOgImage} />
         )}
-        {resolvedOgImage && ogImageAlt && (
-            <meta name="twitter:image:alt" content={ogImageAlt} />
+        {resolvedOgImage && (
+            <meta name="twitter:image:alt" content={ogImageAlt ?? title} />
         )}
     </head>
     <body>
