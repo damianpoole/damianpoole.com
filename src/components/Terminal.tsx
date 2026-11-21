@@ -2,6 +2,7 @@ import {
     useState,
     useEffect,
     useMemo,
+    useRef,
     useSyncExternalStore,
     type MouseEvent,
 } from 'react'
@@ -76,6 +77,10 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
     const [step, setStep] = useState<0 | 1 | 2>(0) // 0: typing command, 1: loading, 2: typing output
     const [userSkipped, setUserSkipped] = useState(false)
     const [reducedMotionStore] = useState(createReducedMotionLatch)
+    const skipButtonRef = useRef<HTMLButtonElement>(null)
+    const outputRef = useRef<HTMLDivElement>(null)
+    const skipButtonFocusedRef = useRef(false)
+    const shouldFocusOutputRef = useRef(false)
 
     const skippedByReducedMotion = useSyncExternalStore(
         reducedMotionStore.subscribe,
@@ -126,12 +131,40 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
                 return
             }
 
+            if (
+                event.target instanceof Element &&
+                event.target.closest('a, button, input, textarea, select')
+            ) {
+                return
+            }
+
             setUserSkipped(true)
         }
 
         window.addEventListener('keydown', handleKeyDown)
         return () => window.removeEventListener('keydown', handleKeyDown)
     }, [isAnimationComplete])
+
+    useEffect(() => {
+        if (
+            isAnimationComplete &&
+            (shouldFocusOutputRef.current || skipButtonFocusedRef.current)
+        ) {
+            shouldFocusOutputRef.current = false
+            skipButtonFocusedRef.current = false
+            outputRef.current?.focus({ preventScroll: true })
+        }
+    }, [isAnimationComplete])
+
+    const handleSkipButtonClick = () => {
+        if (
+            document.activeElement === skipButtonRef.current ||
+            skipButtonFocusedRef.current
+        ) {
+            shouldFocusOutputRef.current = true
+        }
+        setUserSkipped(true)
+    }
 
     const handleTerminalClick = (event: MouseEvent<HTMLDivElement>) => {
         if (isAnimationComplete) {
@@ -173,8 +206,15 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
                 {!isAnimationComplete && (
                     <div className="mb-4">
                         <button
+                            ref={skipButtonRef}
                             type="button"
-                            onClick={() => setUserSkipped(true)}
+                            onFocus={() => {
+                                skipButtonFocusedRef.current = true
+                            }}
+                            onBlur={() => {
+                                skipButtonFocusedRef.current = false
+                            }}
+                            onClick={handleSkipButtonClick}
                             className="border-cat-surface1 bg-cat-mantle text-cat-subtext0 hover:bg-cat-surface0 hover:text-cat-text focus-visible:outline-cat-blue rounded border px-2.5 py-1 text-xs transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
                         >
                             Skip animation
@@ -185,6 +225,7 @@ const Terminal = ({ outputNodes }: TerminalProps) => {
                 {/* Output */}
                 {(effectiveStep === 1 || effectiveStep === 2) && (
                     <Output
+                        outputRef={outputRef}
                         nodes={outputNodes}
                         visibleChars={visibleOutputChars}
                         showAll={isAnimationComplete}

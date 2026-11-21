@@ -122,32 +122,109 @@ describe('Terminal typewriter UX', () => {
         ).toBeTruthy()
     })
 
-    test('skips animation via the focusable Skip animation button and terminal area clicks without intercepting links', () => {
+    test('preserves native activation on the focused Skip button and moves focus to output on skip or completion', () => {
         vi.useFakeTimers()
         mockMatchMedia(false)
 
-        render(<Terminal outputNodes={outputNodes} />)
+        const { container, unmount } = render(
+            <Terminal outputNodes={outputNodes} />
+        )
 
-        // Clicking a navigation link does not trigger terminal skip
-        const blogLink = screen.getByRole('link', { name: /blog/i })
-        fireEvent.click(blogLink)
+        const skipButton = screen.getByRole('button', {
+            name: /skip animation/i,
+        })
+        skipButton.focus()
+        expect(document.activeElement).toBe(skipButton)
+
+        // Pressing Space on the focused button must not be preempted by window keydown
+        fireEvent.keyDown(skipButton, { key: ' ' })
+        expect(
+            screen.getByRole('button', { name: /skip animation/i })
+        ).toBeTruthy()
         expect(
             screen.queryByRole('heading', { level: 1, name: 'Damian Poole' })
         ).toBeNull()
 
-        // Clicking the native Skip animation button reveals full output
-        const skipButton = screen.getByRole('button', {
-            name: /skip animation/i,
-        })
+        // Native button activation skips and moves focus to the output region
         fireEvent.click(skipButton)
-
-        expect(screen.getByText(terminalContent.command)).toBeTruthy()
+        const outputRegion = container.querySelector('.terminal-output')
+        expect(outputRegion).toBeTruthy()
+        expect(document.activeElement).toBe(outputRegion)
         expect(
             screen.getByRole('heading', { level: 1, name: 'Damian Poole' })
+        ).toBeTruthy()
+        unmount()
+
+        // Natural completion while Skip button is focused also preserves focus in output
+        const second = render(<Terminal outputNodes={outputNodes} />)
+        const secondSkipButton = screen.getByRole('button', {
+            name: /skip animation/i,
+        })
+        secondSkipButton.focus()
+        expect(document.activeElement).toBe(secondSkipButton)
+
+        act(() => {
+            vi.advanceTimersByTime(4100)
+        })
+        act(() => {
+            vi.advanceTimersByTime(10)
+        })
+        act(() => {
+            vi.advanceTimersByTime(850)
+        })
+        act(() => {
+            vi.advanceTimersByTime(10000)
+        })
+
+        const secondOutputRegion =
+            second.container.querySelector('.terminal-output')
+        expect(secondOutputRegion).toBeTruthy()
+        expect(document.activeElement).toBe(secondOutputRegion)
+    })
+
+    test('skips on terminal-area clicks while ignoring clicks on in-output links', () => {
+        vi.useFakeTimers()
+        mockMatchMedia(false)
+
+        const { unmount } = render(<Terminal outputNodes={outputNodes} />)
+
+        // Advance into partial output reveal so an in-output link is visible while still typing
+        act(() => {
+            vi.advanceTimersByTime(4100)
+        })
+        act(() => {
+            vi.advanceTimersByTime(10)
+        })
+        act(() => {
+            vi.advanceTimersByTime(850)
+        })
+        act(() => {
+            vi.advanceTimersByTime(16 * 160)
+        })
+
+        const inOutputLink = screen.getByRole('link', { name: 'AND Digital' })
+        expect(
+            screen.queryByText(/The goal is to solve the problem/i)
+        ).toBeNull()
+
+        // Clicking an in-output link must not skip the animation
+        fireEvent.click(inOutputLink)
+        expect(
+            screen.queryByText(/The goal is to solve the problem/i)
+        ).toBeNull()
+        expect(
+            screen.getByRole('button', { name: /skip animation/i })
+        ).toBeTruthy()
+
+        // Clicking the terminal area itself skips the animation
+        fireEvent.click(screen.getByText(terminalContent.prompt.path))
+        expect(
+            screen.getByText(/The goal is to solve the problem/i)
         ).toBeTruthy()
         expect(
             screen.queryByRole('button', { name: /skip animation/i })
         ).toBeNull()
+        unmount()
     })
 
     test('skips animation on keydown while preserving Space default action and ignoring Tab/shortcuts', () => {

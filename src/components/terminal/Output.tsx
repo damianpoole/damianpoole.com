@@ -1,4 +1,4 @@
-import { createElement, type ReactNode } from 'react'
+import { createElement, type ReactNode, type Ref } from 'react'
 import { VOID_HTML_TAGS, type TerminalNode } from '@/utils/terminalNodes'
 
 interface OutputProps {
@@ -7,6 +7,7 @@ interface OutputProps {
     showAll: boolean
     isProcessing: boolean
     isTyping: boolean
+    outputRef?: Ref<HTMLDivElement>
 }
 
 const renderAllTerminalNodes = (
@@ -75,6 +76,7 @@ export const Output = ({
     showAll,
     isProcessing,
     isTyping,
+    outputRef,
 }: OutputProps) => {
     if (isProcessing) {
         return (
@@ -92,7 +94,11 @@ export const Output = ({
         : renderTerminalNodes(nodes, { remaining: visibleChars }, 'out')
 
     return (
-        <div className="terminal-output animate-in fade-in duration-300">
+        <div
+            ref={outputRef}
+            tabIndex={-1}
+            className="terminal-output animate-in fade-in duration-300 focus:outline-none"
+        >
             <div className="prose prose-invert prose-lg max-w-none leading-relaxed">
                 {renderedNodes}
             </div>
