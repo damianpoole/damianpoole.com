@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite-plus'
 import globals from 'globals'
 
@@ -11,6 +12,11 @@ function lintGlobals(values: Record<string, boolean>) {
 }
 
 export default defineConfig({
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+        },
+    },
     staged: {
         '*': 'vp fmt --check',
         '*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}': 'vp lint',

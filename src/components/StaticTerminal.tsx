@@ -1,9 +1,10 @@
 import { safeRenderMarkdown } from '@/utils/sanitizeHtml.server'
 import { terminalContent } from '@/data/terminalContent'
+import { terminalOutputMarkdown } from '@/data/terminalOutput.server'
 import TerminalFrame from './TerminalFrame'
 import { Prompt } from './terminal/Prompt'
 
-const htmlOutput = safeRenderMarkdown(terminalContent.output)
+const htmlOutput = safeRenderMarkdown(terminalOutputMarkdown)
 
 const StaticTerminal = () => {
     return (

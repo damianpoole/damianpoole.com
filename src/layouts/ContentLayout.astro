@@ -9,6 +9,8 @@ interface Props {
     eyebrow?: string
     canonicalUrl?: string
     ogType?: 'website' | 'article'
+    ogImage?: string
+    ogImageAlt?: string
     activeTab?: 'home' | 'blog' | 'projects'
 }
 
@@ -19,6 +21,8 @@ const {
     eyebrow,
     canonicalUrl,
     ogType,
+    ogImage,
+    ogImageAlt,
     activeTab = 'blog',
 } = Astro.props
 ---
@@ -28,6 +32,8 @@ const {
     description={description}
     canonicalUrl={canonicalUrl}
     ogType={ogType}
+    ogImage={ogImage}
+    ogImageAlt={ogImageAlt}
 >
     <TerminalFrame activeTab={activeTab}>
         <div class="text-cat-text w-full font-mono text-lg md:text-xl">
